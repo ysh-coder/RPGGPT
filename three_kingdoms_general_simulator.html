@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#101728">
+<title>亂世英傑｜三國武將人生模擬器</title>
+<style>
+:root{--bg:#0d1423;--panel:#172238;--panel2:#1d2a43;--line:#2d3b5c;--text:#edf1fb;--muted:#95a2bd;--gold:#f2c451;--red:#e66a65;--green:#55c9a2;--blue:#78a9ff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -15%,#273653 0,#101728 48%,#0b1120 100%);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","PingFang TC",sans-serif}
+button,input,select{font:inherit}button{cursor:pointer;color:inherit}.wrap{max-width:900px;margin:auto;padding:18px 16px 70px}.topline{height:5px;background:linear-gradient(90deg,#a52a46,#e5b74c,#4a8c85);margin:-18px -16px 20px}
+.brand{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}.brand h1{font-size:23px;letter-spacing:3px;margin:0}.brand small{color:var(--muted);letter-spacing:2px}.pill{border:1px solid var(--line);border-radius:12px;padding:9px 12px;background:#111a2c;color:var(--muted)}
+.panel{background:linear-gradient(145deg,rgba(28,41,65,.98),rgba(18,28,47,.98));border:1px solid var(--line);border-radius:20px;padding:19px;margin:14px 0;box-shadow:0 12px 35px #0003}
+h2{font-size:18px;letter-spacing:2px;margin:0 0 16px;color:#aab6d0}.sectionno{display:inline-block;background:var(--gold);color:#241d0c;border-radius:8px;padding:3px 9px;font-weight:900;margin-right:9px}
+label{display:block;color:#aab6d0;font-weight:700;margin:15px 0 8px}.field{width:100%;background:#0f1728;color:var(--text);border:2px solid #2a3858;border-radius:15px;padding:16px;font-size:18px;outline:none}.field:focus{border-color:var(--gold)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.choice{background:#10192b;border:2px solid #2b3857;border-radius:15px;padding:13px 7px;text-align:center;color:#aab5ce;min-height:76px;font-weight:800}.choice b{display:block;font-size:17px;color:inherit}.choice small{display:block;font-weight:500;font-size:11px;margin-top:4px}.choice.active{border-color:var(--gold);background:#222d46;color:var(--gold);box-shadow:0 0 0 1px #f2c45122}
+.primary{border:0;border-radius:15px;background:var(--gold);color:#211b0c;font-weight:900;padding:16px 20px;width:100%;font-size:18px;box-shadow:0 7px 0 #a47c27;margin-top:18px}.secondary{background:#202d47;border:1px solid var(--line);border-radius:12px;padding:10px 14px;color:#dce4f5;font-weight:700}
+.hint{font-size:13px;color:var(--muted);line-height:1.7}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.stat{background:#10192b;border:1px solid var(--line);border-radius:12px;padding:10px}.stat span{display:block;color:var(--muted);font-size:12px}.stat strong{font-size:21px}.bar{height:7px;background:#0b1322;border-radius:10px;margin-top:6px;overflow:hidden}.bar i{display:block;height:100%;background:var(--green);border-radius:10px}
+.hero{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}.hero h2{font-size:26px;color:white;margin:0 0 4px;letter-spacing:1px}.crest{width:74px;height:74px;border-radius:18px;background:linear-gradient(145deg,#5c2739,#a94c42);display:grid;place-items:center;font-size:35px;border:2px solid #d5a84a}
+.meta{color:var(--muted);font-size:13px}.bigline{font-size:14px;color:var(--muted);margin:14px 0}
+.actionrow{display:flex;gap:8px;flex-wrap:wrap}.actionrow button{flex:1;min-width:100px}
+.scene{background:linear-gradient(180deg,#233c4b,#132b3a);border:2px solid #456076;border-radius:15px;padding:14px;overflow:hidden;position:relative;min-height:180px}
+.scene:before{content:"";position:absolute;inset:12px;border:2px solid #9eb0ad55;border-radius:8px}.scene:after{content:"";position:absolute;width:115px;height:115px;border:2px solid #9eb0ad55;border-radius:50%;left:calc(50% - 57px);top:calc(50% - 57px)}
+.battlefield{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-around;min-height:150px;font-size:34px}.fighter{text-align:center}.fighter small{display:block;font-size:12px;color:#d7e1e9}.eventtitle{font-size:22px;font-weight:900;margin:7px 0 5px}.eventtext{line-height:1.8;color:#d1daeb}.eventchoices{display:grid;gap:10px;margin-top:15px}.eventbtn{background:#1b2942;border:1px solid #435477;border-radius:15px;text-align:left;padding:14px}.eventbtn strong{display:block;color:var(--gold);font-size:16px}.eventbtn small{color:var(--muted);display:block;margin-top:5px;line-height:1.5}
+.log{border-left:2px solid #53627f;padding-left:13px;margin:12px 0;color:#bdc9df;line-height:1.7}.tag{display:inline-block;background:#2b3855;color:var(--gold);border-radius:7px;padding:3px 8px;font-size:12px;margin-right:5px}
+.hidden{display:none!important}.tabs{display:flex;gap:7px;overflow:auto;margin:14px 0}.tabs button{white-space:nowrap}.tabs .active{border-color:var(--gold);color:var(--gold)}
+.pointrow{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid #2b3855}.pointrow:last-child{border:0}.pointrow small{color:var(--muted)}.pointrow button{background:#263653;border:1px solid var(--line);border-radius:9px;padding:7px 13px;color:var(--gold);font-weight:900}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#263653;border:1px solid var(--gold);padding:11px 16px;border-radius:99px;z-index:10;box-shadow:0 8px 30px #0008;max-width:90%;text-align:center}
+footer{text-align:center;color:#73819d;font-size:12px;margin:24px 0}
+@media(max-width:560px){.wrap{padding:14px 12px 60px}.topline{margin:-14px -12px 18px}.grid{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}.panel{padding:15px}.brand h1{font-size:19px}.hero h2{font-size:22px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="topline"></div>
+<header class="brand"><div><h1>亂世英傑</h1><small>THREE KINGDOMS · GENERAL LIFE SIMULATOR</small></div><span class="pill">⚔️ 群雄逐鹿</span></header>
+
+<section class="panel" id="create">
+<h2>建立你的武將</h2>
+<label><span class="sectionno">01</span>武將姓名</label>
+<input class="field" id="name" maxlength="12" placeholder="例如：趙雲、周瑜、你的名字" value="雲長">
+<label>字（選填）</label><input class="field" id="courtesy" maxlength="12" placeholder="例如：子龍">
+<label><span class="sectionno">02</span>出身勢力</label>
+<div class="grid" id="factions">
+<button class="choice active" data-v="蜀漢"><b>🐉 蜀漢</b><small>仁義・忠勇</small></button>
+<button class="choice" data-v="曹魏"><b>🦅 曹魏</b><small>法度・霸業</small></button>
+<button class="choice" data-v="東吳"><b>🌊 東吳</b><small>水戰・江東</small></button>
+<button class="choice" data-v="群雄"><b>🔥 群雄</b><small>自立・逐鹿</small></button>
+</div>
+<label><span class="sectionno">03</span>武將定位</label>
+<div class="grid" id="roles">
+<button class="choice active" data-v="猛將"><b>⚔️ 猛將</b><small>武力與單挑</small></button>
+<button class="choice" data-v="統帥"><b>🛡️ 統帥</b><small>領兵與防守</small></button>
+<button class="choice" data-v="軍師"><b>📜 軍師</b><small>智謀與計策</small></button>
+<button class="choice" data-v="全才"><b>☯️ 全才</b><small>均衡發展</small></button>
+</div>
+<label><span class="sectionno">04</span>初始特質</label>
+<div class="grid" id="traits">
+<button class="choice active" data-v="忠義"><b>義薄雲天</b><small>忠誠成長較快</small></button>
+<button class="choice" data-v="膽識"><b>膽識過人</b><small>戰場表現突出</small></button>
+<button class="choice" data-v="足智"><b>足智多謀</b><small>計策成功率提高</small></button>
+<button class="choice" data-v="天命"><b>天命所歸</b><small>機遇略為增加</small></button>
+</div>
+<button class="primary" id="start">揭竿而起・開始武將生涯</button>
+<p class="hint">你的選擇會影響初始能力、事件機率與人生走向。每次遊玩都會生成不同的亂世際遇。</p>
+</section>
+
+<section id="game" class="hidden">
+<div class="panel">
+<div class="hero"><div><div class="meta" id="factionline">蜀漢・猛將</div><h2 id="heroName">雲長</h2><div class="meta" id="herotitle">字雲長・黃巾之亂後</div></div><div class="crest" id="crest">🐉</div></div>
+<div class="bigline" id="seasonline">建安元年｜公元 196 年・初出茅廬</div>
+<div class="stats" id="quickstats"></div>
+<div class="bigline" id="summary">你踏入群雄並起的年代，天下尚未有定主。</div>
+<div class="actionrow"><button class="secondary" id="profileBtn">📜 人物傳記</button><button class="secondary" id="saveBtn">💾 儲存進度</button><button class="secondary" id="resetBtn">↺ 重新開始</button></div>
+</div>
+<div class="panel">
+<h2>武將能力・可分配成長點</h2><div class="meta" id="pointsText">剩餘 8 點</div><div id="attributes"></div>
+<p class="hint">能力範圍 1–100。武力影響單挑，統率影響軍團作戰，智謀影響計策，政治影響治理，魅力影響聲望與結盟。</p>
+</div>
+<div class="panel">
+<h2>戰場態勢</h2>
+<div class="scene"><div class="battlefield"><div class="fighter">🏴‍☠️<small>敵軍</small></div><div class="fighter" id="battleicon">🧑🏻‍🚀<small>你・本陣</small></div><div class="fighter">🏯<small>城池</small></div></div></div>
+<div class="bigline" id="battleinfo">烽煙四起，等待你的第一道軍令。</div>
+</div>
+<div class="panel" id="eventPanel">
+<h2>關鍵時刻・你的抉擇</h2><div class="meta" id="eventEra">亂世初年</div><div class="eventtitle" id="eventTitle">英雄，時勢造就</div><div class="eventtext" id="eventText">一封急報送到營中。你會如何應對？</div><div class="eventchoices" id="choices"></div>
+</div>
+<div class="panel"><h2>生涯紀錄</h2><div id="timeline"><div class="log">你的傳奇即將開始……</div></div></div>
+</section>
+<footer>亂世英傑・三國武將人生模擬器｜單機遊戲，進度儲存於本機瀏覽器</footer>
+</div>
+<div class="toast hidden" id="toast"></div>
+<script>
+const $=id=>document.getElementById(id);
+const pick={faction:"蜀漢",role:"猛將",trait:"忠義"};
+const factionData={蜀漢:{icon:"🐉",color:"#b94c49",line:"仁義立國"},曹魏:{icon:"🦅",color:"#627ca8",line:"挾天子以令諸侯"},東吳:{icon:"🌊",color:"#438f91",line:"坐斷東南戰未休"},群雄:{icon:"🔥",color:"#a77a43",line:"自立旗號逐鹿中原"}};
+const roleBase={猛將:{武力:78,統率:58,智謀:42,政治:35,魅力:55},統帥:{武力:58,統率:80,智謀:58,政治:48,魅力:55},軍師:{武力:30,統率:48,智謀:84,政治:68,魅力:58},全才:{武力:60,統率:62,智謀:62,政治:60,魅力:60}};
+const traitBonus={忠義:{忠誠:12},膽識:{武力:7},足智:{智謀:7},天命:{魅力:4}};
+const eras=[["中平六年","189","董卓亂政"],["初平三年","192","群雄割據"],["建安元年","196","曹操迎天子"],["建安五年","200","官渡之戰"],["建安十三年","208","赤壁之戰"],["建安二十四年","219","漢中與荊州"],["章武元年","221","蜀漢立國"],["黃初七年","226","三分天下"],["太和五年","231","北伐烽煙"],["青龍二年","234","五丈原秋風"]];
+let s=null, currentEvent=0;
+const eventBank=[
+{title:"亂世中的第一份邀請",text:"一方諸侯派人送來招募書，承諾高官厚祿，但你尚未看清他的真正志向。",choices:[["投身明主","接受招募，獲得官職與資源。", {loyalty:8,fame:5,wealth:12}],["暫不表態","留在鄉里觀察局勢，潛心磨練。",{wisdom:4,politics:3,energy:8}],["自募鄉勇","招攬志同道合者，建立自己的班底。",{leadership:5,fame:4,wealth:-5}]]},
+{title:"軍情急報：敵軍壓境",text:"斥候回報敵軍已逼近城外。守將主張堅守，部將則請命出城迎戰。",choices:[["據城固守","以逸待勞，保存兵力。",{leadership:5,energy:5,fame:2}],["率軍突襲","趁敵軍立足未穩，主動出擊。",{martial:5,fame:8,energy:-12}],["設伏誘敵","利用地形與情報，誘敵深入。",{wisdom:6,leadership:3,fame:6,energy:-5}]]},
+{title:"帳中夜議：是否採納奇策？",text:"軍師獻上一條冒險計策：若成功可扭轉戰局，但一旦失敗，恐損兵折將。",choices:[["依計而行","信任軍師，放手一搏。",{wisdom:5,fame:9,energy:-8}],["修改計策","補上漏洞，再謹慎執行。",{wisdom:3,leadership:3,energy:-3}],["按兵不動","不為奇謀所動，穩守待變。",{loyalty:2,energy:6}]]},
+{title:"百姓流離，城中缺糧",text:"戰火令百姓無家可歸，糧倉存糧只夠軍民數月。你必須作出取捨。",choices:[["開倉賑濟","先安民心，軍中改行節糧。",{fame:9,loyalty:5,wealth:-12}],["軍民共同屯田","組織軍民生產，長遠解決糧荒。",{politics:6,wealth:5,energy:-4}],["優先供應軍隊","確保軍力，等待戰事結束。",{leadership:3,loyalty:-5,wealth:4}]]},
+{title:"敵將來書，願意歸降",text:"敵方一名勇將暗中送來降書，表示願意獻城，但要求保全部曲與家眷。",choices:[["厚待接納","以誠意收納人才。",{fame:6,leadership:4,loyalty:5}],["要求立功","先交出兵符，再以戰功證明忠心。",{leadership:5,wisdom:2}],["拒絕納降","擔心有詐，拒絕對方。",{loyalty:2,fame:-2}]]},
+{title:"天下大勢：結盟還是獨行？",text:"強敵環伺，鄰近勢力提出聯盟。盟約能帶來短暫安全，卻也可能限制你的選擇。",choices:[["締結盟約","合縱連橫，共抗強敵。",{fame:5,politics:5,loyalty:3}],["保持中立","不輕易承諾，保留戰略彈性。",{wisdom:5,politics:2}],["先發制人","趁對方未備，爭取主動。",{martial:4,leadership:4,fame:6,energy:-10}]]},
+{title:"主公問策：下一步如何進軍？",text:"軍議上眾將各執一詞。有人主張直取要地，有人認為應先鞏固後方。",choices:[["奇兵直取","集中精銳，攻其不備。",{martial:3,leadership:5,fame:7,energy:-10}],["先固根本","整頓軍紀、修築城防、積蓄力量。",{politics:5,leadership:3,wealth:5}],["分兵牽制","多線佈局，迫使敵軍疲於奔命。",{wisdom:5,leadership:2,energy:-5}]]},
+{title:"功高震主？",text:"你的聲望日隆，朝中開始出現猜忌之聲。部下勸你交出部分兵權，以示忠誠。",choices:[["主動交權","以退為進，表明忠心。",{loyalty:9,fame:-2,politics:4}],["上表自辯","陳述功績，請主公明察。",{fame:3,loyalty:2,wisdom:2}],["暗中培植勢力","為未來留下退路，但風險甚高。",{leadership:5,loyalty:-9,wealth:5}]]},
+{title:"決戰前夕",text:"兩軍隔河對峙，將士等待最後命令。這一戰將決定你在史書上的名字。",choices:[["身先士卒","親率精銳衝鋒，鼓舞全軍。",{martial:7,fame:12,energy:-18}],["運籌帷幄","調度各軍，尋找敵陣破綻。",{wisdom:6,leadership:6,fame:9,energy:-10}],["堅守待機","保存實力，等待敵軍露出破綻。",{leadership:4,energy:8,fame:2}]]}
+];
+function bindGroup(id,key){$(id).querySelectorAll("button").forEach(b=>b.onclick=()=>{$(id).querySelectorAll("button").forEach(x=>x.classList.remove("active"));b.classList.add("active");pick[key]=b.dataset.v})}
+bindGroup("factions","faction");bindGroup("roles","role");bindGroup("traits","trait");
+function toast(t){$("toast").textContent=t;$("toast").classList.remove("hidden");setTimeout(()=>$("toast").classList.add("hidden"),2200)}
+function clamp(n){return Math.max(0,Math.min(100,n))}
+function startGame(){
+ const name=$("name").value.trim()||"無名將";let attrs={...roleBase[pick.role]};
+ if(pick.trait==="膽識")attrs.武力+=7;if(pick.trait==="足智")attrs.智謀+=7;if(pick.trait==="天命")attrs.魅力+=4;
+ s={name,courtesy:$("courtesy").value.trim(),faction:pick.faction,role:pick.role,trait:pick.trait,age:18,year:189,season:0,attrs,loyalty:traitBonus[pick.trait].忠誠||65,fame:8,energy:80,wealth:20,army:1000,points:8,log:[],ended:false};
+ $("create").classList.add("hidden");$("game").classList.remove("hidden");render();nextEvent();
+}
+function render(){
+ const fd=factionData[s.faction];$("heroName").textContent=s.name;$("factionline").textContent=s.faction+"・"+s.role+"・"+s.trait;$("herotitle").textContent=(s.courtesy?"字 "+s.courtesy+"・":"")+s.age+" 歲｜"+(s.ended?"傳奇落幕":"逐鹿生涯");$("crest").textContent=fd.icon;$("crest").style.background=`linear-gradient(145deg,${fd.color},#172238)`;
+ let era=eras[Math.min(s.season,eras.length-1)];$("seasonline").textContent=era[0]+"｜公元 "+s.year+" 年・"+era[2];$("summary").textContent=`聲望 ${s.fame} ・ 忠誠 ${s.loyalty} ・ 軍資 ${s.wealth} ・ 部曲 ${s.army.toLocaleString()} 人`;
+ const quick=[["武將聲望",s.fame],["主公信任",s.loyalty],["軍心狀態",s.energy],["軍資存量",s.wealth]];
+ $("quickstats").innerHTML=quick.map(([n,v])=>`<div class="stat"><span>${n}</span><strong>${v}</strong><div class="bar"><i style="width:${clamp(v)}%;background:${v<30?'var(--red)':'var(--green)'}"></i></div></div>`).join("");
+ $("pointsText").textContent="剩餘 "+s.points+" 點";$("attributes").innerHTML=Object.entries(s.attrs).map(([k,v])=>`<div class="pointrow"><div><b>${k}</b> <small>${v}/100</small><div class="bar"><i style="width:${v}%;background:var(--blue)"></i></div></div><small>能力</small><button ${s.points<=0||v>=100?'disabled':''} onclick="addPoint('${k}')">＋</button></div>`).join("");
+ $("timeline").innerHTML=s.log.slice().reverse().map(x=>`<div class="log"><span class="tag">${x.year}年</span>${x.text}</div>`).join("")||'<div class="log">你的傳奇即將開始……</div>';
+ $("battleinfo").textContent=`${s.faction}軍現有部曲 ${s.army.toLocaleString()} 人。軍心 ${s.energy}，${s.energy<30?"將士疲憊，宜休整。":"全軍整裝待命。"}`;
+ $("battleicon").innerHTML=(s.role==="軍師"?"📜":s.role==="統帥"?"🛡️":"⚔️")+"<small>你・本陣</small>";
+}
+function addPoint(k){if(s.points<=0||s.attrs[k]>=100)return;s.attrs[k]=clamp(s.attrs[k]+2);s.points--;render()}
+function nextEvent(){
+ if(s.ended)return;
+ let e=eventBank[Math.floor(Math.random()*eventBank.length)];$("eventEra").textContent=`${s.age}歲｜公元 ${s.year} 年｜${s.faction}陣營`;
+ $("eventTitle").textContent=e.title;$("eventText").textContent=e.text;
+ $("choices").innerHTML=e.choices.map((c,i)=>`<button class="eventbtn" onclick="choose(${i})"><strong>${c[0]}</strong><small>${c[1]}</small></button>`).join("");
+}
+function choose(i){
+ const title=$("eventTitle").textContent;const event=eventBank.find(e=>e.title===title);const c=event.choices[i];let result=[];
+ const map={martial:"武力",leadership:"統率",wisdom:"智謀",politics:"政治",charisma:"魅力"};
+ for(const [k,v] of Object.entries(c[2])){if(map[k]){s.attrs[map[k]]=clamp(s.attrs[map[k]]+v);result.push(map[k]+(v>0?"+":"")+v)}else{s[k]=clamp(s[k]+v);result.push(({loyalty:"忠誠",fame:"聲望",energy:"軍心",wealth:"軍資"})[k]+(v>0?"+":"")+v)}}
+ // 將事件選擇轉化為一季的推進與戰果
+ let power=s.attrs.武力*.28+s.attrs.統率*.32+s.attrs.智謀*.25+s.attrs.魅力*.15;
+ let roll=Math.random()*100, won=roll<power;
+ if(s.energy<20)won=won&&Math.random()<.35;
+ let battle=won?"此役告捷，軍中威望大增。":"戰事受挫，所幸主力尚存。";
+ if(won){s.fame+=8;s.army+=300;s.wealth+=8}else{s.fame=Math.max(0,s.fame-3);s.army=Math.max(200,s.army-180);s.energy-=8}
+ s.age+=2;s.year+=2;s.season++;s.energy=clamp(s.energy+8);s.points+=2;
+ let line=`${title}｜${c[0]}。${battle}（${result.join("、")}）`;
+ s.log.push({year:s.year,text:line});$("eventText").textContent=c[1]+" "+battle;
+ $("eventTitle").textContent=won?"⚔️ 戰報：大獲全勝":"⚠️ 戰報：戰局失利";
+ $("choices").innerHTML=`<div class="eventbtn"><strong>${won?"捷報傳回":"整軍再戰"}</strong><small>${line}</small></div><button class="primary" onclick="advance()">進入下一個篇章 →</button>`;
+ render();
+ if(s.age>=60||s.season>=12){s.ended=true;$("herotitle").textContent="傳奇落幕｜"+s.age+"歲";$("eventTitle").textContent="一代名將，終成史書";$("eventText").textContent=`${s.name}一生歷經風雨，最終留下聲望 ${s.fame}、統率 ${s.attrs.統率} 的傳奇。你可以重新開始，譜寫另一段三國人生。`;$("choices").innerHTML='<button class="primary" onclick="location.reload()">再開新局</button>';render()}
+}
+function advance(){if(s.ended)return;nextEvent()}
+$("start").onclick=startGame;
+$("saveBtn").onclick=()=>{localStorage.setItem("threeKingdomSave",JSON.stringify(s));toast("進度已儲存於此裝置。")};
+$("resetBtn").onclick=()=>{if(confirm("確定放棄目前生涯並重新開始？"))location.reload()};
+$("profileBtn").onclick=()=>{alert(`${s.name}${s.courtesy?"，字"+s.courtesy:""}\n${s.faction}・${s.role}\n享年/目前年齡：${s.age}\n聲望：${s.fame}\n\n${s.log.map(x=>x.year+"年："+x.text).join("\n")||"尚未建立事蹟"}`)};
+const old=localStorage.getItem("threeKingdomSave");
+if(old){try{let saved=JSON.parse(old);let b=document.createElement("button");b.className="secondary";b.style.width="100%";b.style.marginTop="10px";b.textContent="📂 繼續上次的武將生涯";$("create").appendChild(b);b.onclick=()=>{s=saved;$("create").classList.add("hidden");$("game").classList.remove("hidden");render();nextEvent()}}catch(e){}}
+</script>
+</body></html>
