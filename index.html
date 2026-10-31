@@ -61,7 +61,7 @@ label { display: block; color: #aab6d0; font-weight: 700; margin: 15px 0 8px; }
 .secondary { background: #202d47; border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; color: #dce4f5; font-weight: 700; }
 .hint { font-size: 13px; color: var(--muted); line-height: 1.7; }
 
-/* Status Bar & Hero Header */
+/* Status Bar & Header */
 .hero { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; }
 .hero h2 { font-size: 26px; color: white; margin: 0 0 4px; letter-spacing: 1px; }
 .crest { width: 74px; height: 74px; border-radius: 18px; background: linear-gradient(145deg,#5c2739,#a94c42); display: grid; place-items: center; font-size: 35px; border: 2px solid #d5a84a; }
@@ -75,16 +75,71 @@ label { display: block; color: #aab6d0; font-weight: 700; margin: 15px 0 8px; }
 .bar { height: 6px; background: #0b1322; border-radius: 10px; margin-top: 5px; overflow: hidden; }
 .bar i { display: block; height: 100%; background: var(--green); border-radius: 10px; }
 
-/* Dynamic Events */
-.eventtitle { font-size: 22px; font-weight: 900; margin: 7px 0 5px; color: var(--gold); }
-.eventtext { line-height: 1.8; color: #d1daeb; margin-bottom: 15px; }
-.eventchoices { display: grid; gap: 10px; margin-top: 15px; }
-.eventbtn { background: #1b2942; border: 1px solid #435477; border-radius: 15px; text-align: left; padding: 14px; transition: 0.2s; }
-.eventbtn:hover { border-color: var(--gold); background: #233554; }
-.eventbtn strong { display: block; color: var(--gold); font-size: 16px; }
-.eventbtn small { color: var(--muted); display: block; margin-top: 5px; line-height: 1.5; }
+/* Event Box UI (Matching Screenshot 2) */
+.event-box { background: #121c2e; border: 1px solid var(--line); border-radius: 16px; padding: 16px; margin-bottom: 14px; }
+.event-chapter { color: var(--purple); font-size: 13px; font-weight: bold; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+.event-desc { font-size: 15px; line-height: 1.7; color: #dce4f5; }
 
-/* Training System UI (Matching Screenshot) */
+.eventchoices { display: grid; gap: 12px; margin-top: 15px; }
+
+/* Choice Button with Success Rate Ring (Matching Screenshot 2) */
+.choice-btn {
+  background: #152238;
+  border: 1.5px solid #2d3e61;
+  border-radius: 16px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-align: left;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.choice-btn:hover {
+  border-color: var(--gold);
+  background: #1d2d4a;
+  transform: translateY(-1px);
+}
+.rate-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 3px solid var(--gold);
+  background: rgba(242, 196, 81, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 900;
+  color: var(--gold);
+  flex-shrink: 0;
+  box-shadow: 0 0 10px rgba(242, 196, 81, 0.15);
+}
+.rate-circle.hidden-rate {
+  border-color: var(--purple);
+  color: var(--purple);
+  background: rgba(179, 136, 255, 0.08);
+  box-shadow: 0 0 10px rgba(179, 136, 255, 0.15);
+}
+.choice-content strong { display: block; color: #fff; font-size: 15px; margin-bottom: 3px; }
+.choice-content small { display: block; color: var(--muted); font-size: 12px; line-height: 1.4; }
+
+/* Follow-up Reaction Page / Outcome Box */
+.outcome-card {
+  background: #111a2d;
+  border: 2px solid var(--gold);
+  border-radius: 18px;
+  padding: 18px;
+  margin-top: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+}
+.outcome-status { font-size: 18px; font-weight: 900; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+.outcome-status.success { color: var(--green); }
+.outcome-status.fail { color: var(--red); }
+.outcome-text { font-size: 15px; line-height: 1.8; color: #edf1fb; margin-bottom: 12px; }
+.outcome-changes { background: #0b1220; border-radius: 10px; padding: 10px 14px; font-size: 13px; color: var(--gold); margin-bottom: 16px; }
+
+/* Training System UI (Matching Screenshot 1) */
 .training-banner { background: #162238; border-left: 4px solid var(--gold); padding: 12px 15px; border-radius: 8px; margin-bottom: 15px; }
 .training-banner h3 { margin: 0 0 5px; font-size: 16px; color: var(--gold); }
 .training-banner p { margin: 0; font-size: 13px; color: var(--muted); }
@@ -130,7 +185,7 @@ footer { text-align: center; color: #73819d; font-size: 12px; margin: 24px 0; }
   <span class="pill">⚔️ 三國演義模擬器</span>
 </header>
 
-<!-- 1. 武將建立介面 (出生地選擇) -->
+<!-- 1. 武將建立介面 -->
 <section class="panel" id="create">
   <h2>建立你的武將</h2>
   <label><span class="sectionno">01</span>武將姓名</label>
@@ -138,14 +193,14 @@ footer { text-align: center; color: #73819d; font-size: 12px; margin: 24px 0; }
   <label>字（選填）</label>
   <input class="field" id="courtesy" maxlength="12" placeholder="例如：子龍">
   
-  <label><span class="sectionno">02</span>出生地區（影響初始風土與人脈）</label>
+  <label><span class="sectionno">02</span>出生地區（決定地域專屬角色事件）</label>
   <div class="grid grid-3" id="birthplaces">
-    <button class="choice active" data-v="幽州"><b>🐴 幽州</b><small>邊陲騎勁・豪傑輩出</small></button>
-    <button class="choice" data-v="兗州"><b>🌾 兗州</b><small>中原樞紐・兵家必爭</small></button>
-    <button class="choice" data-v="荊州"><b>🛶 荊州</b><small>水陸通衢·文風鼎盛</small></button>
-    <button class="choice" data-v="江東"><b>🌊 江東</b><small>長江天險·水師強勁</small></button>
-    <button class="choice" data-v="益州"><b>⛰️ 益州</b><small>蜀道險固·天府之國</small></button>
-    <button class="choice" data-v="涼州"><b>🗡️ 涼州</b><small>民風悍勇·鐵騎無雙</small></button>
+    <button class="choice active" data-v="幽州"><b>🐴 幽州</b><small>趙雲・公孫瓚</small></button>
+    <button class="choice" data-v="兗州"><b>🌾 兗州</b><small>荀彧・典韋</small></button>
+    <button class="choice" data-v="荊州"><b>🛶 荊州</b><small>諸葛亮・水鏡先生</small></button>
+    <button class="choice" data-v="江東"><b>🌊 江東</b><small>周瑜・孫策</small></button>
+    <button class="choice" data-v="益州"><b>⛰️ 益州</b><small>法正・張松</small></button>
+    <button class="choice" data-v="涼州"><b>🗡️ 涼州</b><small>馬超・韓遂</small></button>
   </div>
 
   <label><span class="sectionno">03</span>武將定位</label>
@@ -158,14 +213,13 @@ footer { text-align: center; color: #73819d; font-size: 12px; margin: 24px 0; }
 
   <label><span class="sectionno">04</span>初始特質</label>
   <div class="grid" id="traits">
-    <button class="choice active" data-v="忠義"><b>義薄雲天</b><small>信任成長較快</small></button>
+    <button class="choice active" data-v="忠義"><b>義薄雲天</b><small>信任成長加成</small></button>
     <button class="choice" data-v="膽識"><b>膽識過人</b><small>戰場武力加成</small></button>
-    <button class="choice" data-v="足智"><b>足智多謀</b><small>訓練智謀加成</small></button>
+    <button class="choice" data-v="足智"><b>足智多謀</b><small>智謀判定加成</small></button>
     <button class="choice" data-v="天命"><b>天命所歸</b><small>聲望獲得提高</small></button>
   </div>
 
   <button class="primary" id="start">揭竿而起・踏入三國亂世</button>
-  <p class="hint">你將從地方鄉勇做起，隨着黃巾之亂與群雄割據的歷史演進，選擇投奔的明主或自立為王！</p>
 </section>
 
 <!-- 2. 遊戲主畫面 -->
@@ -173,13 +227,13 @@ footer { text-align: center; color: #73819d; font-size: 12px; margin: 24px 0; }
   <div class="panel">
     <div class="hero">
       <div>
-        <div class="meta" id="factionline">在野草莽・幽州出身</div>
+        <div class="meta" id="factionline">在野草莽 · 幽州出身</div>
         <h2 id="heroName">雲長</h2>
-        <div class="meta" id="herotitle">字雲長・18 歲</div>
+        <div class="meta" id="herotitle">字雲長 · 18 歲</div>
       </div>
       <div class="crest" id="crest">⚔️</div>
     </div>
-    <div class="bigline" id="seasonline">中平六年｜公元 189 年・黃巾烽火</div>
+    <div class="bigline" id="seasonline">中平六年 ｜ 公元 189 年 · 黃巾烽火</div>
     <div class="stats" id="quickstats"></div>
     <div class="bigline" id="summary">能力：武力 78 | 統率 58 | 智謀 42 | 政治 35 | 魅力 55</div>
     <div class="actionrow" style="display:flex;gap:8px;margin-top:10px;">
@@ -189,16 +243,36 @@ footer { text-align: center; color: #73819d; font-size: 12px; margin: 24px 0; }
     </div>
   </div>
 
-  <!-- 3. 事件模式 (歷史規律演進) -->
+  <!-- 3. 事件模式（帶有成功率標籤與後續反應頁） -->
   <div class="panel" id="eventPanel">
-    <h2>歷史轉捩點・抉擇</h2>
-    <div class="meta" id="eventEra">公元 189 年</div>
-    <div class="eventtitle" id="eventTitle">載入中...</div>
-    <div class="eventtext" id="eventText">...</div>
+    <h2>歷史與機遇 · 抉擇</h2>
+    
+    <!-- 篇章 context 框 -->
+    <div class="event-box">
+      <div class="event-chapter" id="eventEra">◆ 少年篇 · 189 年</div>
+      <div class="event-desc" id="eventIntro">故事背景載入中...</div>
+    </div>
+
+    <!-- 當前情境說明 -->
+    <div class="event-box" style="background:#0f1829;">
+      <div class="event-desc" id="eventText">...</div>
+    </div>
+
+    <div class="meta" style="margin-top:12px;" id="choicePrompt">你的選擇？</div>
+    
+    <!-- 選項列表 -->
     <div class="eventchoices" id="choices"></div>
+
+    <!-- 後續反應結果展示頁面 (隱藏/顯示) -->
+    <div class="outcome-card hidden" id="outcomeBox">
+      <div class="outcome-status" id="outcomeStatus">⚔️ 判定成功！</div>
+      <div class="outcome-text" id="outcomeText">你成功壓制了敵陣...</div>
+      <div class="outcome-changes" id="outcomeChanges">獲得：武力 +5，聲望 +8</div>
+      <button class="primary" id="nextStepBtn" style="margin-top:10px;">點擊進入下一頁 →</button>
+    </div>
   </div>
 
-  <!-- 4. 季中集訓營 (參考圖片介面) -->
+  <!-- 4. 季中集訓營 (參考第一張圖片) -->
   <div class="panel hidden" id="trainingPanel">
     <h2>演武集訓營 <span class="meta" style="font-size:12px;" id="trainCounter">請選擇 3 堂課</span></h2>
     <div class="training-banner">
@@ -223,14 +297,13 @@ footer { text-align: center; color: #73819d; font-size: 12px; margin: 24px 0; }
   </div>
 </section>
 
-<footer>亂世英傑・三國演義人生模擬器｜單機版進度儲存於瀏覽器</footer>
+<footer>亂世英傑 · 三國演義人生模擬器｜單機版進度儲存於瀏覽器</footer>
 </div>
 <div class="toast hidden" id="toast"></div>
 
 <script>
 const $ = id => document.getElementById(id);
 
-// 玩家屬性
 const pick = { birthplace: "幽州", role: "猛將", trait: "忠義" };
 
 const roleBase = {
@@ -244,95 +317,262 @@ const factionIcons = {
   "在野草莽": "⚔️", "蜀漢": "🐉", "曹魏": "🦅", "東吳": "🌊", "獨立群雄": "🔥"
 };
 
-// 規律歷史事件集（按時間與季節推進）
-const historyEvents = [
+// 地域專屬隨機事件庫 (根據出生地遭遇專屬人物)
+const regionalEvents = {
+  幽州: [
+    {
+      title: "常山趙子龍與白馬義從",
+      intro: "幽州邊境常山郡，你聞聽一位白馬銀槍的青年名叫趙雲，正欲投奔公孫瓚。",
+      text: "你在校場遇到了正在練槍的趙雲，槍法如龍，令人驚嘆。",
+      choices: [
+        {
+          title: "切磋槍法與武藝",
+          sub: "以武會友，交流槍法心得（檢定：武力）",
+          stat: "武力", baseRate: 0, hideRate: false,
+          win: { text: "你與趙雲大戰五十回合不分勝負！趙雲深感佩服，與你結為摯友。", effect: { 武力: 5, 聲望: 8, 疲勞: 10 } },
+          fail: { text: "趙雲槍法精妙絕倫，你略遜一籌，但從中悟出了許多招式。", effect: { 武力: 2, 疲勞: 15 } }
+        },
+        {
+          title: "密謀共投明主",
+          sub: "探討天下大勢，規劃未來去向（檢定：智謀）",
+          stat: "智謀", baseRate: 5, hideRate: false,
+          win: { text: "你對天下形勢的分析讓趙雲大為贊同，二人相見恨晚。", effect: { 智謀: 5, 魅力: 6 } },
+          fail: { text: "趙雲此時一心忠於邊防，對宏大戰略未多作回應。", effect: { 智謀: 1 } }
+        },
+        {
+          title: "夜襲邊境烏桓殘部",
+          sub: "冒險率少數騎兵夜襲敵營（奇謀隱密行動）",
+          stat: "統率", baseRate: 0, hideRate: true, // 隱藏成功率
+          win: { text: "奇襲大獲成功！你與趙雲縱馬陣前，大破敵軍！", effect: { 統率: 7, 聲望: 12, 疲勞: 20 } },
+          fail: { text: "敵軍早有防備，你奮力殺出重圍，受了點輕傷。", effect: { 疲勞: 25, 信任: -5 } }
+        }
+      ]
+    }
+  ],
+  兗州: [
+    {
+      title: "荀彧薦舉與典韋力舉旗桿",
+      intro: "兗州東郡，曹操招賢納士。王佐之才荀彧正在城中考察人才。",
+      text: "營門前巨大旗桿即將傾倒，眾人驚恐之際，壯士典韋一手握定旗桿！",
+      choices: [
+        {
+          title: "上前與典韋共同力挺大旗",
+          sub: "展示驚人臂力，驚動荀彧（檢定：武力）",
+          stat: "武力", baseRate: -5, hideRate: false,
+          win: { text: "你與典韋各據一方，死死穩住大旗！荀彧大讚：「真古之惡來與當世神將！」", effect: { 武力: 6, 聲望: 10, 疲勞: 15 } },
+          fail: { text: "大旗重量驚人，你勉強支持，險些受傷。", effect: { 疲勞: 20 } }
+        },
+        {
+          title: "向荀彧獻上兗州治理策",
+          sub: "論述屯田與兵制策略（檢定：政治）",
+          stat: "政治", baseRate: 10, hideRate: false,
+          win: { text: "荀彧驚嘆你的遠見卓識，將你列入名士薦舉名單！", effect: { 政治: 7, 信任: 10 } },
+          fail: { text: "荀彧溫和地指出策略中的漏洞，並親自為你指點。", effect: { 政治: 3 } }
+        }
+      ]
+    }
+  ],
+  荊州: [
+    {
+      title: "隆中臥龍與水鏡先生",
+      intro: "荊州襄陽，水鏡先生司馬徽設宴招攬天下俊傑，諸葛亮亦在座中。",
+      text: "席間談及天下將來歸於何人，水鏡先生微笑着看向你。",
+      choices: [
+        {
+          title: "暢談「三分天下」戰略構想",
+          sub: "展現宏大戰略視野（檢定：智謀）",
+          stat: "智謀", baseRate: -10, hideRate: false,
+          win: { text: "諸葛亮眼中閃過驚異之色，揮扇大笑：「足下之見，正合亮意！」", effect: { 智謀: 8, 聲望: 10 } },
+          fail: { text: "戰略分析略顯粗糙，諸葛亮與水鏡先生笑而不語。", effect: { 智謀: 2 } }
+        },
+        {
+          title: "拜求水鏡先生指點迷津",
+          sub: "以謙遜態度求教修身之道（檢定：魅力）",
+          stat: "魅力", baseRate: 15, hideRate: false,
+          win: { text: "水鏡先生贈你絕版兵法奇書，並為你題詞讚譽！", effect: { 魅力: 7, 統率: 4 } },
+          fail: { text: "水鏡先生贈你一句銘言：「時機未到，靜心修行。」", effect: { 魅力: 2 } }
+        }
+      ]
+    }
+  ],
+  江東: [
+    {
+      title: "周郎顧曲與小霸王結拜",
+      intro: "江東柴桑水師校場，孫策與周瑜正督導長江水軍演練。",
+      text: "戰船排列整齊，周瑜手執羽扇指揮若定，孫策則在岸邊騎射試弓。",
+      choices: [
+        {
+          title: "與孫策比試騎射百步穿楊",
+          sub: "展示弓馬武術（檢定：武力）",
+          stat: "武力", baseRate: 0, hideRate: false,
+          win: { text: "你一箭命中紅心！孫策大喜，一把拉住你：「江東竟有如此豪傑，當與我暢飲！」", effect: { 武力: 6, 聲望: 8 } },
+          fail: { text: "風向突變箭偏半寸，孫策笑著安慰你並傳授江東風向經驗。", effect: { 武力: 2 } }
+        },
+        {
+          title: "協助周瑜演練水師陣形",
+          sub: "設計長江戰船連環陣（檢定：統率）",
+          stat: "統率", baseRate: 5, hideRate: false,
+          win: { text: "周瑜大讚你的陣形巧思，將水軍左營交由你協管！", effect: { 統率: 7, 信任: 8 } },
+          fail: { text: "水戰指揮與陸戰大不相同，陣型出現脫節。", effect: { 統率: 2, 疲勞: 10 } }
+        }
+      ]
+    }
+  ],
+  益州: [
+    {
+      title: "法正奇謀與張松地圖",
+      intro: "益州成都，別駕張松與法正暗中尋找能安定蜀中的明主。",
+      text: "張松秘密邀請你至府邸，桌上擺放著一幅繪製極為詳細的西川地形圖。",
+      choices: [
+        {
+          title: "過目不忘背誦蜀道險要",
+          sub: "展現超凡記憶與地利理解（檢定：智謀）",
+          stat: "智謀", baseRate: 0, hideRate: false,
+          win: { text: "你流暢地報出關隘糧道，張松大驚投地，當場將西川圖複製本贈你！", effect: { 智謀: 8, 統率: 4 } },
+          fail: { text: "蜀道地形複雜，你記錯了兩處隘口，法正補充修正。", effect: { 智謀: 3 } }
+        },
+        {
+          title: "承諾維護西川百姓和平",
+          sub: "以政治胸懷感動二人（檢定：政治）",
+          stat: "政治", baseRate: 10, hideRate: false,
+          win: { text: "法正讚賞你的仁政理念，答應日後在劉璋/朝廷前為你美言。", effect: { 政治: 7, 信任: 9 } },
+          fail: { text: "談話未能打動法正，對方面露警惕並結束了密談。", effect: { 政治: 1 } }
+        }
+      ]
+    }
+  ],
+  涼州: [
+    {
+      title: "錦馬超與西涼鐵騎",
+      intro: "涼州西涼荒漠，馬超帶領鐵騎巡視邊境，風沙漫天。",
+      text: "馬超手持白虹劍，座下西涼騎兵威風凜凜，向你發出陣前邀請。",
+      choices: [
+        {
+          title: "率騎兵進行飆馬比試",
+          sub: "在荒漠陡坡進行騎術對決（檢定：統率）",
+          stat: "統率", baseRate: -5, hideRate: false,
+          win: { text: "你精湛的騎術險勝馬超！西涼鐵騎全軍為你歡呼！", effect: { 統率: 8, 聲望: 10, 疲勞: 15 } },
+          fail: { text: "西涼馬匹悍勇無比，你被馬超拉開了數個身位。", effect: { 統率: 2, 疲勞: 15 } }
+        },
+        {
+          title: "嘗試馴服荒漠野馬王",
+          sub: "獨身挑戰未被馴服的烈馬（隱密高風險行動）",
+          stat: "武力", baseRate: -15, hideRate: true, // 隱藏成功率
+          win: { text: "你力拔山兮，一舉征服野馬王！獲贈汗血名駒！", effect: { 武力: 8, 魅力: 8, 疲勞: 20 } },
+          fail: { text: "烈馬極為兇悍，你被摔下馬背，幸好馬超及時相救。", effect: { 疲勞: 25, 武力: 1 } }
+        }
+      ]
+    }
+  ]
+};
+
+// 歷史主要主線事件庫
+const mainHistoryEvents = [
   {
-    year: 189, era: "中平六年", title: "黃巾蜂火與鄉勇初露",
-    text: "黃巾賊餘黨掠奪鄉里，你憑藉一身本事召集鄉親防守。此時一隊官軍路過，軍官邀請你加入。",
+    year: 189, era: "中平六年", title: "黃巾烽火與鄉勇初露",
+    intro: "◆ 少年篇 · 公元 189 年",
+    text: "黃巾賊餘黨掠奪鄉里，你憑藉一身本事召集鄉親防守。此時一隊官軍路過，軍官邀請你加入攻打寨堡。",
     choices: [
-      { text: "率隊隨官軍討賊", sub: "建立功勳，提升聲望與統率", effect: { 統率: 4, 聲望: 8, 疲勞: 10 } },
-      { text: "獨力守護家鄉", sub: "深得民心，政治與魅力提升", effect: { 政治: 4, 魅力: 6, 信任: 5 } },
-      { text: "深入山林潛修武藝", sub: "專心苦練，武力大增", effect: { 武力: 6, 疲勞: -5 } }
+      {
+        title: "率領鄉勇衝鋒破寨",
+        sub: "建立功勳，提升聲望（檢定：武力）",
+        stat: "武力", baseRate: 10, hideRate: false,
+        win: { text: "你身先士卒斬殺賊首！官軍大潰賊眾，你聲名大噪。", effect: { 武力: 5, 聲望: 10, 疲勞: 10 } },
+        fail: { text: "賊軍箭如雨下，雖最終攻克，但傷亡不小。", effect: { 武力: 2, 疲勞: 20 } }
+      },
+      {
+        title: "指揮陣型防守要道",
+        sub: "減少傷亡，穩紮穩打（檢定：統率）",
+        stat: "統率", baseRate: 15, hideRate: false,
+        win: { text: "防線穩如泰山！官軍指揮官對你的統率天賦讚不絕口。", effect: { 統率: 6, 信任: 8 } },
+        fail: { text: "陣型配合欠佳，經過一番苦戰才擊退敵軍。", effect: { 統率: 2 } }
+      }
     ]
   },
   {
     year: 192, era: "初平三年", title: "十八路諸侯與擇主大事",
-    text: "董卓禍亂朝綱，天下群雄並起！經過幾年的磨練，你已聲名鵲起。多方勢力同時向你拋出橄欖枝，這是決定你人生的時刻：",
+    intro: "◆ 英雄篇 · 公元 192 年",
+    text: "董卓禍亂朝綱，天下群雄並起！經過幾年的磨練，你已聲名鵲起。多方勢力同時向你拋出橄欖枝：",
     choices: [
-      { text: "投奔劉備（蜀漢）", sub: "仁義至上，同甘共苦。主公信任大幅提升！", setFaction: "蜀漢", effect: { 信任: 25, 魅力: 5, 聲望: 5 } },
-      { text: "投奔曹操（曹魏）", sub: "唯才是舉，唯我獨尊。獲得資源與官職！", setFaction: "曹魏", effect: { 信任: 20, 統率: 5, 政治: 5 } },
-      { text: "投奔孫策/孫權（東吳）", sub: "割據江東，水戰無雙。領兵能力顯著成長！", setFaction: "東吳", effect: { 信任: 20, 統率: 6, 武力: 4 } },
-      { text: "自立旗號（獨立群雄）", sub: "不服任何人！自立為一方諸侯，極具挑戰！", setFaction: "獨立群雄", effect: { 聲望: 15, 信任: 10, 疲勞: 15 } }
-    ]
-  },
-  {
-    year: 196, era: "建安元年", title: "奉天子以令不臣 / 許都爭雄",
-    text: "朝廷動盪，各方勢力爭奪天下大義。你所在陣營面臨戰略抉擇，主公（或你自己）召集軍議。",
-    choices: [
-      { text: "主張強攻邊鋒", sub: "親率騎兵突襲，大破敵陣", effect: { 武力: 5, 聲望: 6, 疲勞: 15 } },
-      { text: "獻策屯田積糧", sub: "穩定後方供應，獲朝野讚譽", effect: { 政治: 6, 信任: 8 } },
-      { text: "演練兵陣奇謀", sub: "專研陣法，提昇智謀與統率", effect: { 智謀: 5, 統率: 4 } }
+      {
+        title: "投奔劉備（蜀漢）",
+        sub: "仁義至上，同甘共苦。主公信任大幅提升！",
+        setFaction: "蜀漢", stat: "魅力", baseRate: 20, hideRate: false,
+        win: { text: "劉關張三人在營門外迎你！劉備握住你的手：「得足下相助，漢室可興！」", effect: { 信任: 25, 魅力: 6, 聲望: 8 } },
+        fail: { text: "雖然劉備熱情接納，但此時蜀漢勢力微弱，資源有限。", effect: { 信任: 15, 魅力: 2 } }
+      },
+      {
+        title: "投奔曹操（曹魏）",
+        sub: "唯才是舉，建功立業。獲得豐富資源！",
+        setFaction: "曹魏", stat: "政治", baseRate: 15, hideRate: false,
+        win: { text: "曹操大喜，立即封你為偏將軍：「天下英才，盡入吾彀中矣！」", effect: { 信任: 22, 統率: 6, 政治: 5 } },
+        fail: { text: "曹操雖然重用你，但陣營內派系林立，競爭激烈。", effect: { 信任: 12, 政治: 2 } }
+      },
+      {
+        title: "投奔孫策/孫權（東吳）",
+        sub: "割據江東，水戰無雙。領兵能力顯著成長！",
+        setFaction: "東吳", stat: "統率", baseRate: 15, hideRate: false,
+        win: { text: "江東水師為你舉行歡迎大會！周瑜親自為你佩劍！", effect: { 信任: 22, 統率: 7, 武力: 4 } },
+        fail: { text: "江東本土派系對北方/外地來的將領保持觀望。", effect: { 信任: 12, 統率: 2 } }
+      },
+      {
+        title: "自立旗號（獨立群雄）",
+        sub: "不服任何人！自立為一方諸侯，極具挑戰！（特別抉擇）",
+        setFaction: "獨立群雄", stat: "聲望", baseRate: -10, hideRate: true,
+        win: { text: "你樹起大旗，各方流民與猛將紛紛來投！你成為了一方割據諸侯！", effect: { 聲望: 20, 信任: 15, 疲勞: 15 } },
+        fail: { text: "自立之路充滿艱辛，周邊大諸侯紛紛施加軍事壓力。", effect: { 聲望: 5, 疲勞: 25 } }
+      }
     ]
   },
   {
     year: 200, era: "建安五年", title: "官渡狂風：生死決戰",
+    intro: "◆ 決戰篇 · 公元 200 年",
     text: "北方兩大勢力展開生死決戰，決戰氣息蔓延整個天下。大軍連營百里，大戰一觸即發！",
     choices: [
-      { text: "夜襲糧道奇襲", sub: "冒極大風險斬殺敵將，威震天下", effect: { 武力: 7, 聲望: 12, 疲勞: 20 } },
-      { text: "中軍穩健指揮", sub: "嚴防死守，化解敵軍攻勢", effect: { 統率: 7, 信任: 6 } },
-      { text: "暗中設伏圍殲", sub: "利用地形奇謀大破敵軍", effect: { 智謀: 7, 政治: 3 } }
+      {
+        title: "夜襲烏巢糧道奇襲",
+        sub: "冒極大風險斬殺敵將，威震天下（檢定：武力）",
+        stat: "武力", baseRate: -5, hideRate: false,
+        win: { text: "夜色中火光沖天！你親斬敵將首級，燒毀敵軍百萬糧草！", effect: { 武力: 8, 聲望: 15, 疲勞: 20 } },
+        fail: { text: "敵軍防守嚴密，奇襲演變成慘烈的肉搏拉鋸戰。", effect: { 武力: 2, 疲勞: 30 } }
+      },
+      {
+        title: "中軍穩健指揮嚴防死守",
+        sub: "穩住陣腳，化解敵軍攻勢（檢定：統率）",
+        stat: "統率", baseRate: 10, hideRate: false,
+        win: { text: "你的防線頂住了敵軍百門霹靂車的轟擊！主公稱讚你為「鐵壁神將」。", effect: { 統率: 8, 信任: 10 } },
+        fail: { text: "防線多處失守，靠你親自帶隊補位才穩住局勢。", effect: { 統率: 3, 疲勞: 15 } }
+      }
     ]
   },
   {
     year: 208, era: "建安十三年", title: "赤壁烽火：長江決戰",
+    intro: "◆ 鼎立篇 · 公元 208 年",
     text: "曹軍百萬南下，江水連天。火攻計策已定，只待東風起！你將承擔重任。",
     choices: [
-      { text: "擔任先鋒衝鋒陷陣", sub: "於船頭斬將，立下頭功", effect: { 武力: 8, 聲望: 15, 疲勞: 25 } },
-      { text: "調配船隻水師陣形", sub: "穩固戰船陣腳，減少傷亡", effect: { 統率: 8, 信任: 8 } },
-      { text: "協助制定火攻連環計", sub: "計算風向與柴草，功不可沒", effect: { 智謀: 8, 政治: 4 } }
-    ]
-  },
-  {
-    year: 219, era: "建安二十四年", title: "漢中與荊州：雙線雄起",
-    text: "天下三分已成，各地爆發極大規模城池爭奪戰，史將紀錄下你的無雙功業。",
-    choices: [
-      { text: "單刀赴會/陣前水淹七軍", sub: "展示無雙勇武，聲威震碩中原", effect: { 武力: 6, 聲望: 15, 疲勞: 15 } },
-      { text: "築防固守據點", sub: "建立堅固防線，力挽狂瀾", effect: { 統率: 6, 政治: 6 } },
-      { text: "離間敵軍各將", sub: "以巧計分化強敵", effect: { 智謀: 7, 信任: 5 } }
-    ]
-  },
-  {
-    year: 221, era: "章武元年", title: "三國鼎立與登極帝業",
-    text: "天下局勢日趨穩定，諸侯稱帝。身為國之重臣，朝廷進行大封功臣。",
-    choices: [
-      { text: "接受大將軍封號", sub: "統領天下兵馬，權傾朝野", effect: { 統率: 6, 聲望: 10, 信任: 10 } },
-      { text: "致力於地方治理與民生", sub: "休養生息，受萬民景仰", effect: { 政治: 8, 魅力: 8 } },
-      { text: "撰寫兵書傳承後世", sub: "總結一生心得，智謀再提升", effect: { 智謀: 8, 疲勞: -10 } }
-    ]
-  },
-  {
-    year: 226, era: "黃初七年", title: "北伐烽煙與星落陣前",
-    text: "兩國邊境戰雲再起，北伐與反擊的軍號響徹山谷。老將出征，英雄志在千里！",
-    choices: [
-      { text: "老當益壯，親率敢死隊", sub: "展現不屈氣概，全軍士氣高漲", effect: { 武力: 5, 聲望: 10, 疲勞: 20 } },
-      { text: "主持後勤與糧草運輸", sub: "保障前方數萬兵馬後勤", effect: { 政治: 7, 信任: 7 } },
-      { text: "佈置八陣圖拒敵", sub: "於狹道設伏，功成身退", effect: { 智謀: 7, 統率: 5 } }
+      {
+        title: "擔任先鋒衝鋒陷陣",
+        sub: "於船頭斬將，立下頭功（檢定：武力）",
+        stat: "武力", baseRate: 0, hideRate: false,
+        win: { text: "火光映紅了長江！你乘小舟直插敵陣，所向披靡！", effect: { 武力: 9, 聲望: 18, 疲勞: 25 } },
+        fail: { text: "江面煙霧繚繞，船隻受阻，奮戰後全身退回。", effect: { 武力: 3, 疲勞: 20 } }
+      },
+      {
+        title: "協助制定火攻連環計",
+        sub: "計算風向與柴草，功不可沒（檢定：智謀）",
+        stat: "智謀", baseRate: 10, hideRate: false,
+        win: { text: "東風如期而至！火勢精準蔓延敵營，功冠全軍！", effect: { 智謀: 9, 政治: 5 } },
+        fail: { text: "風向轉換比預期慢了半個時辰，戰果略微打折。", effect: { 智謀: 3 } }
+      }
     ]
   }
 ];
 
-// 訓練課程模板庫 (類似上傳圖片)
-const allCourses = [
-  { id: 1, title: "擂台切磋", gain: "武力 +5", spec: "專項武力 ×1.5", stars: "★★★★☆☆", intensity: 4, fatigue: 15, stat: "武力", amount: 5, mult: 1.5 },
-  { id: 2, title: "戰術演練", gain: "統率 +4", spec: "專項統率 ×1.5", stars: "★★★☆☆☆", intensity: 3, fatigue: 8, trust: 4, stat: "統率", amount: 4, mult: 1.5 },
-  { id: 3, title: "兵法陣圖", gain: "智謀 +7", spec: "專項智謀 ×1.5", stars: "★★★★★☆", intensity: 5, fatigue: 12, stat: "智謀", amount: 7, mult: 1.5 },
-  { id: 4, title: "政務處理", gain: "政治 +4", spec: "專項政治 ×1.5", stars: "★★☆☆☆☆", intensity: 2, fatigue: 5, stat: "政治", amount: 4, mult: 1.5 },
-  { id: 5, title: "騎射對抗", gain: "武力 +7", spec: "專項武力 ×1.5", stars: "★★★★★☆", intensity: 5, fatigue: 14, stat: "武力", amount: 7, mult: 1.5 },
-  { id: 6, title: "閉門歇息", gain: "恢復休養", spec: "—", stars: "★☆☆☆☆☆", intensity: 1, fatigue: -25, energy: 15, stat: "REST", amount: 0, mult: 1 }
-];
-
 let s = null; // 遊戲狀態
-let selectedTrainings = []; // 當前集訓選擇
+let currentEventList = []; // 當前輪次的事件列表
+let currentEventIndex = 0;
+let currentChoiceResult = null; // 暫存後續反應
+let selectedTrainings = [];
 
 function toast(t) {
   $("toast").textContent = t;
@@ -344,7 +584,7 @@ function clamp(n, min = 0, max = 100) {
   return Math.max(min, Math.min(max, n));
 }
 
-// 綁定選單點擊
+// 綁定開局選項
 function bindGroup(id, key) {
   $(id).querySelectorAll("button").forEach(b => b.onclick = () => {
     $(id).querySelectorAll("button").forEach(x => x.classList.remove("active"));
@@ -356,7 +596,23 @@ bindGroup("birthplaces", "birthplace");
 bindGroup("roles", "role");
 bindGroup("traits", "trait");
 
-// 開局
+// 計算選項成功率 %
+function getSuccessRate(choice) {
+  if (choice.hideRate) return null;
+  let statVal = s.attrs[choice.stat] || 50;
+  if (choice.stat === '聲望') statVal = s.fame;
+  if (choice.stat === '信任') statVal = s.trust;
+  
+  // 計算公式：屬性值 * 0.8 + 基礎加成 + 特質加成
+  let bonus = choice.baseRate || 0;
+  if (s.trait === "足智" && choice.stat === "智謀") bonus += 8;
+  if (s.trait === "膽識" && choice.stat === "武力") bonus += 8;
+  
+  let rate = Math.round(statVal * 0.75 + bonus + 15);
+  return clamp(rate, 15, 95);
+}
+
+// 開始遊戲
 function startGame() {
   const name = $("name").value.trim() || "無名將";
   let attrs = { ...roleBase[pick.role] };
@@ -368,16 +624,16 @@ function startGame() {
     name,
     courtesy: $("courtesy").value.trim(),
     birthplace: pick.birthplace,
-    faction: "在野草莽", // 初始必定是在野，需透過歷史事件擇主
+    faction: "在野草莽",
     role: pick.role,
     trait: pick.trait,
     age: 18,
-    yearIndex: 0, // 歷史事件索引
+    eventTurn: 0,
     attrs,
-    trust: 50,    // 主公信任/威望
-    fame: 10,     // 聲望
-    fatigue: 10,  // 疲勞
-    awakenedCount: 0, // 高強度集訓覺醒進度
+    trust: 50,
+    fame: 10,
+    fatigue: 10,
+    awakenedCount: 0,
     isAwakened: false,
     log: [],
     ended: false
@@ -386,26 +642,41 @@ function startGame() {
   $("create").classList.add("hidden");
   $("game").classList.remove("hidden");
   
+  // 建立事件佇列（歷史事件 + 地域專屬事件）
+  buildEventList();
   renderState();
-  loadCurrentHistoryEvent();
+  showCurrentEvent();
 }
 
-// 刷新 UI 資訊
+function buildEventList() {
+  currentEventList = [];
+  // 插入第一個歷史主線事件
+  currentEventList.push(mainHistoryEvents[0]);
+  
+  // 插入地域專屬角色事件
+  if (regionalEvents[s.birthplace] && regionalEvents[s.birthplace].length > 0) {
+    currentEventList.push(regionalEvents[s.birthplace][0]);
+  }
+
+  // 插入其餘主線事件
+  for (let i = 1; i < mainHistoryEvents.length; i++) {
+    currentEventList.push(mainHistoryEvents[i]);
+  }
+}
+
+// 刷新頂部屬性 UI
 function renderState() {
   $("heroName").textContent = s.name;
   $("factionline").textContent = `${s.faction} · ${s.birthplace}出身 · ${s.role}`;
   $("herotitle").textContent = (s.courtesy ? `字 ${s.courtesy} · ` : "") + `${s.age} 歲 | ${s.isAwakened ? '⚡無雙神將' : '亂世立功'}`;
   $("crest").textContent = factionIcons[s.faction] || "⚔️";
 
-  const currEvent = historyEvents[s.yearIndex] || historyEvents[historyEvents.length - 1];
-  $("seasonline").textContent = `${currEvent.era} ｜ 公元 ${currEvent.year} 年 · ${currEvent.title}`;
-
   $("summary").textContent = `武力:${s.attrs.武力} | 統率:${s.attrs.統率} | 智謀:${s.attrs.智謀} | 政治:${s.attrs.政治} | 魅力:${s.attrs.魅力}`;
 
   const quick = [
     ["聲望威名", s.fame],
     ["主公信任", s.trust],
-    ["身心疲勞", s.fatigue, true], // true 代表越高越不好
+    ["身心疲勞", s.fatigue, true],
     ["覺醒進度", `${s.awakenedCount}/5`]
   ];
 
@@ -418,70 +689,124 @@ function renderState() {
   $("timeline").innerHTML = s.log.slice().reverse().map(x => `<div class="log"><span class="tag">${x.year}年</span>${x.text}</div>`).join("") || '<div class="log">亂世英雄傳奇即將展開……</div>';
 }
 
-// 載入當前規律歷史事件
-function loadCurrentHistoryEvent() {
+// 顯示當前事件
+function showCurrentEvent() {
   if (s.ended) return;
-  const ev = historyEvents[s.yearIndex];
 
   $("eventPanel").classList.remove("hidden");
   $("trainingPanel").classList.add("hidden");
+  $("outcomeBox").classList.add("hidden"); // 隱藏後續反應框
+  $("choices").classList.remove("hidden");
 
-  $("eventEra").textContent = `公元 ${ev.year} 年 · ${ev.era} (${s.age}歲)`;
-  $("eventTitle").textContent = ev.title;
-  $("eventText").textContent = ev.text;
-
-  $("choices").innerHTML = ev.choices.map((c, i) => `
-    <button class="eventbtn" onclick="makeEventChoice(${i})">
-      <strong>${c.text}</strong>
-      <small>${c.sub}</small>
-    </button>
-  `).join("");
-}
-
-// 玩家進行歷史抉擇
-function makeEventChoice(idx) {
-  const ev = historyEvents[s.yearIndex];
-  const choice = ev.choices[idx];
-
-  // 如果事件包含擇主陣營
-  if (choice.setFaction) {
-    s.faction = choice.setFaction;
-    toast(`你選擇了加入【${s.faction}】！`);
+  const ev = currentEventList[currentEventIndex];
+  if (!ev) {
+    endGame();
+    return;
   }
 
-  // 套用數值變化
-  let resultTexts = [];
-  if (choice.effect) {
-    for (const [k, v] of Object.entries(choice.effect)) {
+  $("seasonline").textContent = `${ev.era || '亂世三國'} ｜ 公元 ${ev.year || (189 + s.eventTurn * 3)} 年`;
+  $("eventEra").textContent = ev.intro || `◆ ${s.birthplace}遇合 · ${s.age}歲`;
+  $("eventIntro").textContent = ev.title;
+  $("eventText").textContent = ev.text;
+
+  // 生成選項（帶有左側圓環成功率，參考第二張圖）
+  $("choices").innerHTML = ev.choices.map((c, i) => {
+    const rate = getSuccessRate(c);
+    const rateHTML = rate !== null 
+      ? `<div class="rate-circle">${rate}%</div>` 
+      : `<div class="rate-circle hidden-rate">❓ 秘</div>`;
+
+    return `
+      <div class="choice-btn" onclick="makeChoice(${i})">
+        ${rateHTML}
+        <div class="choice-content">
+          <strong>${c.title}</strong>
+          <small>${c.sub}</small>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+// 進行選項判定並展現後續反應 (Two-step flow)
+function makeChoice(choiceIdx) {
+  const ev = currentEventList[currentEventIndex];
+  const choice = ev.choices[choiceIdx];
+
+  // 擇主處理
+  if (choice.setFaction) {
+    s.faction = choice.setFaction;
+    toast(`你選擇了投奔【${s.faction}】！`);
+  }
+
+  // 計算判定
+  const rate = getSuccessRate(choice) || 50; // 隱藏成功率預設為 50% 浮動判定
+  const roll = Math.random() * 100;
+  const isSuccess = roll <= rate;
+
+  const resultObj = isSuccess ? choice.win : choice.fail;
+  
+  // 應用屬性變動
+  let changeTexts = [];
+  if (resultObj.effect) {
+    for (const [k, v] of Object.entries(resultObj.effect)) {
       if (s.attrs[k] !== undefined) {
         s.attrs[k] = clamp(s.attrs[k] + v);
-        resultTexts.push(`${k}${v > 0 ? '+' : ''}${v}`);
+        changeTexts.push(`${k} ${v > 0 ? '+' : ''}${v}`);
       } else if (k === 'fame' || k === '聲望') {
         s.fame = clamp(s.fame + v);
-        resultTexts.push(`聲望+${v}`);
+        changeTexts.push(`聲望 ${v > 0 ? '+' : ''}${v}`);
       } else if (k === 'trust' || k === '信任') {
         s.trust = clamp(s.trust + v);
-        resultTexts.push(`信任+${v}`);
+        changeTexts.push(`信任 ${v > 0 ? '+' : ''}${v}`);
       } else if (k === 'fatigue' || k === '疲勞') {
         s.fatigue = clamp(s.fatigue + v);
-        resultTexts.push(`疲勞${v > 0 ? '+' : ''}${v}`);
+        changeTexts.push(`疲勞 ${v > 0 ? '+' : ''}${v}`);
       }
     }
   }
 
-  // 寫入紀錄
+  // 記錄至歷史履歷
   s.log.push({
-    year: ev.year,
-    text: `【${ev.title}】抉擇：${choice.text}。（${resultTexts.join("，")}）`
+    year: ev.year || (189 + s.eventTurn * 3),
+    text: `【${ev.title}】選擇「${choice.title}」(${isSuccess ? '成功' : '挫折'})：${resultObj.text}`
   });
 
   renderState();
 
-  // 進入集訓環節
-  startTrainingPhase();
+  // 顯示後續反應頁面 (不直接進入下一個事件)
+  $("choices").classList.add("hidden");
+  $("outcomeBox").classList.remove("hidden");
+
+  $("outcomeStatus").className = `outcome-status ${isSuccess ? 'success' : 'fail'}`;
+  $("outcomeStatus").textContent = isSuccess ? "⚔️ 行動判定：大獲成功！" : "⚠️ 行動判定：遭遇挫折/變數！";
+  $("outcomeText").textContent = resultObj.text;
+  $("outcomeChanges").textContent = "影響結果：" + (changeTexts.join("，") || "無屬性變動");
 }
 
-// 切換至圖片樣式的訓練系統 (Training Phase)
+// 點擊「點擊進入下一頁」按鈕後推進流程
+$("nextStepBtn").onclick = () => {
+  currentEventIndex++;
+  s.eventTurn++;
+
+  // 偶數輪次開啟集訓營，奇數輪次繼續事件
+  if (s.eventTurn % 2 === 1) {
+    startTrainingPhase();
+  } else {
+    showCurrentEvent();
+  }
+};
+
+// 演武集訓營（參考第一張圖）
+const allCourses = [
+  { id: 1, title: "衝刺訓練", gain: "武力 +5", spec: "專項武力 ×1.5", stars: "★★★★☆☆", intensity: 4, fatigue: 15, stat: "武力", amount: 5, mult: 1.5 },
+  { id: 2, title: "戰術演練", gain: "統率 +4", spec: "專項統率 ×1.5", stars: "★★★☆☆☆", intensity: 3, fatigue: 6, trust: 4, stat: "統率", amount: 4, mult: 1.5 },
+  { id: 3, title: "傳播陣圖", gain: "智謀 +7", spec: "專項智謀 ×1.5", stars: "★★★★★☆", intensity: 5, fatigue: 12, stat: "智謀", amount: 7, mult: 1.5 },
+  { id: 4, title: "防守站位", gain: "政治 +4", spec: "專項政治 ×1.5", stars: "★★☆☆☆☆", intensity: 2, fatigue: 8, stat: "政治", amount: 4, mult: 1.5 },
+  { id: 5, title: "騎射對抗", gain: "武力 +7", spec: "專項武力 ×1.5", stars: "★★★★★☆", intensity: 5, fatigue: 10, stat: "武力", amount: 7, mult: 1.5 },
+  { id: 6, title: "恢復休息", gain: "身心恢復", spec: "—", stars: "★☆☆☆☆☆", intensity: 1, fatigue: -25, energy: 15, stat: "REST", amount: 0, mult: 1 }
+];
+
 function startTrainingPhase() {
   $("eventPanel").classList.add("hidden");
   $("trainingPanel").classList.remove("hidden");
@@ -489,10 +814,8 @@ function startTrainingPhase() {
   selectedTrainings = [];
   updateTrainButton();
 
-  // 更新覺醒 UI
   $("awakenTitle").textContent = s.isAwakened ? "⚡ 已覺醒【無雙神將】天賦！" : `⚡ 天才覺醒進度：${s.awakenedCount} / 5`;
 
-  // 生成 6 堂訓練課
   $("trainingGrid").innerHTML = allCourses.map(c => `
     <div class="t-card" id="tcard-${c.id}" onclick="toggleSelectCourse(${c.id})">
       <div class="t-title">${c.title}</div>
@@ -505,7 +828,6 @@ function startTrainingPhase() {
   `).join("");
 }
 
-// 選擇/取消訓練課程 (最多選 3 堂)
 function toggleSelectCourse(id) {
   const index = selectedTrainings.indexOf(id);
   if (index > -1) {
@@ -528,12 +850,10 @@ function updateTrainButton() {
   $("finishTrainBtn").disabled = selectedTrainings.length !== 3;
 }
 
-// 結算集訓並推進至下一年
 $("finishTrainBtn").onclick = () => {
   if (selectedTrainings.length < 3) return;
 
   let trainLogs = [];
-
   selectedTrainings.forEach(id => {
     const c = allCourses.find(item => item.id === id);
     if (c.stat === "REST") {
@@ -548,60 +868,60 @@ $("finishTrainBtn").onclick = () => {
       trainLogs.push(`${c.title}(${c.stat}+${add})`);
     }
 
-    // 累積 5 星以上課程觸發覺醒
     if (c.intensity >= 5 && !s.isAwakened) {
       s.awakenedCount++;
       if (s.awakenedCount >= 5) {
         s.isAwakened = true;
         s.attrs.武力 = clamp(s.attrs.武力 + 10);
         s.attrs.統率 = clamp(s.attrs.統率 + 10);
-        toast("✨ 恭喜！你完成了高強度修練，成功覺醒【無雙神將】天賦！全能力大幅突破！");
+        toast("✨ 恭喜！你完成了高強度集訓，覺醒【無雙神將】天賦！");
       }
     }
   });
 
-  // 年齡與歷史進度推進
-  s.yearIndex++;
-  s.age += 3;
-
-  const currentEv = historyEvents[s.yearIndex - 1];
+  s.age += 2;
   s.log.push({
-    year: currentEv ? currentEv.year + 1 : 200,
-    text: `【演武集訓】完成了：${trainLogs.join("、")}。`
+    year: 189 + s.eventTurn * 2,
+    text: `【演武特訓】進行了：${trainLogs.join("、")}。`
   });
 
   renderState();
-
-  // 判斷遊戲是否結束
-  if (s.yearIndex >= historyEvents.length || s.age >= 60) {
-    s.ended = true;
-    $("eventPanel").classList.remove("hidden");
-    $("trainingPanel").classList.add("hidden");
-    $("eventEra").textContent = "傳奇終章";
-    $("eventTitle").textContent = "一代名將，名垂青史";
-    $("eventText").textContent = `你在三國亂世中奮戰一生，終享年 ${s.age} 歲。最終官至【${s.faction}】重臣，威名 ${s.fame}，能力總和達到 ${Object.values(s.attrs).reduce((a,b)=>a+b,0)}！你的故事已被後人載入三國史冊。`;
-    $("choices").innerHTML = '<button class="primary" onclick="location.reload()">重新譜寫另一段英雄人生</button>';
-  } else {
-    // 進入下一個歷史事件
-    loadCurrentHistoryEvent();
-  }
+  showCurrentEvent();
 };
 
-// 工具按鈕
+function endGame() {
+  s.ended = true;
+  $("eventPanel").classList.remove("hidden");
+  $("trainingPanel").classList.add("hidden");
+  $("outcomeBox").classList.add("hidden");
+  $("choices").classList.add("hidden");
+
+  $("eventEra").textContent = "傳奇落幕";
+  $("eventIntro").textContent = "一代名將，功成名遂";
+  $("eventText").textContent = `你在三國亂世中奮戰一生，享年 ${s.age} 歲。最終官至【${s.faction}】重臣，聲望威名 ${s.fame}，屬性總和達到 ${Object.values(s.attrs).reduce((a,b)=>a+b,0)}！史官已將你的英勇事蹟載入冊籍。`;
+  
+  let btn = document.createElement("button");
+  btn.className = "primary";
+  btn.textContent = "再開新局 · 重寫傳奇";
+  btn.onclick = () => location.reload();
+  $("eventPanel").appendChild(btn);
+}
+
+// 存檔與重置工具
 $("start").onclick = startGame;
 $("saveBtn").onclick = () => {
-  localStorage.setItem("threeKingdomsSave_v2", JSON.stringify(s));
+  localStorage.setItem("threeKingdomsSave_v3", JSON.stringify(s));
   toast("進度已儲存於本機瀏覽器！");
 };
 $("resetBtn").onclick = () => {
   if (confirm("確定放棄目前生涯並重新開始？")) location.reload();
 };
 $("profileBtn").onclick = () => {
-  alert(`【${s.name}${s.courtesy ? "，字" : ""}${s.courtesy}】\n出身：${s.birthplace}\n陣營：${s.faction}\n定位：${s.role}\n覺醒狀態：${s.isAwakened ? "無雙神將" : "未覺醒"}\n\n生涯事蹟：\n${s.log.map(x => x.year + "年: " + x.text).join("\n") || "尚無事蹟"}`);
+  alert(`【${s.name}${s.courtesy ? "，字" : ""}${s.courtesy}】\n出生地區：${s.birthplace}\n所在勢力：${s.faction}\n武將定位：${s.role}\n覺醒稱號：${s.isAwakened ? "無雙神將" : "普通武將"}\n\n生涯紀錄：\n${s.log.map(x => x.year + "年: " + x.text).join("\n") || "尚無事蹟"}`);
 };
 
-// 載入存檔
-const savedData = localStorage.getItem("threeKingdomsSave_v2");
+// 自動載入舊存檔
+const savedData = localStorage.getItem("threeKingdomsSave_v3");
 if (savedData) {
   try {
     let saved = JSON.parse(savedData);
@@ -613,12 +933,11 @@ if (savedData) {
     $("create").appendChild(b);
     b.onclick = () => {
       s = saved;
+      buildEventList();
       $("create").classList.add("hidden");
       $("game").classList.remove("hidden");
       renderState();
-      if ($("trainingPanel").classList.contains("hidden")) {
-        loadCurrentHistoryEvent();
-      }
+      showCurrentEvent();
     };
   } catch (e) {}
 }
