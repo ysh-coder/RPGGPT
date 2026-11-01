@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#101728">
-<title>亂世英傑｜三國武將人生模擬器</title>
+<title>亂世英傑｜三國百姓人生模擬器</title>
 <style>
 :root {
   --bg: #0d1423;
@@ -25,77 +25,78 @@ body {
   background: radial-gradient(ellipse at 50% -15%, #273653 0%, #101728 48%, #0b1120 100%);
   color: var(--text);
   font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC", "PingFang TC", sans-serif;
+  -webkit-tap-highlight-color: transparent;
 }
 button, input, select { font: inherit; }
 button { cursor: pointer; color: inherit; }
-.wrap { max-width: 900px; margin: auto; padding: 18px 16px 70px; }
-.topline { height: 5px; background: linear-gradient(90deg, #a52a46, #e5b74c, #4a8c85); margin: -18px -16px 20px; }
-.brand { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
-.brand h1 { font-size: 23px; letter-spacing: 3px; margin: 0; }
-.brand small { color: var(--muted); letter-spacing: 2px; }
-.pill { border: 1px solid var(--line); border-radius: 12px; padding: 9px 12px; background: #111a2c; color: var(--muted); }
+.wrap { max-width: 900px; margin: auto; padding: 16px 14px 70px; }
+.topline { height: 5px; background: linear-gradient(90deg, #a52a46, #e5b74c, #4a8c85); margin: -16px -14px 18px; }
+.brand { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 16px; }
+.brand h1 { font-size: 21px; letter-spacing: 2px; margin: 0; }
+.brand small { color: var(--muted); letter-spacing: 1px; font-size: 11px; }
+.pill { border: 1px solid var(--line); border-radius: 12px; padding: 6px 10px; background: #111a2c; color: var(--muted); font-size: 12px; }
 
 .panel {
   background: linear-gradient(145deg, rgba(28,41,65,.98), rgba(18,28,47,.98));
   border: 1px solid var(--line);
-  border-radius: 20px;
-  padding: 19px;
-  margin: 14px 0;
-  box-shadow: 0 12px 35px #0003;
+  border-radius: 18px;
+  padding: 16px;
+  margin: 12px 0;
+  box-shadow: 0 10px 30px #0004;
 }
-h2 { font-size: 18px; letter-spacing: 2px; margin: 0 0 16px; color: #aab6d0; display: flex; align-items: center; justify-content: space-between; }
-.sectionno { display: inline-block; background: var(--gold); color: #241d0c; border-radius: 8px; padding: 3px 9px; font-weight: 900; margin-right: 9px; }
-label { display: block; color: #aab6d0; font-weight: 700; margin: 15px 0 8px; }
-.field { width: 100%; background: #0f1728; color: var(--text); border: 2px solid #2a3858; border-radius: 15px; padding: 16px; font-size: 18px; outline: none; }
+h2 { font-size: 17px; letter-spacing: 1px; margin: 0 0 14px; color: #aab6d0; display: flex; align-items: center; justify-content: space-between; }
+.sectionno { display: inline-block; background: var(--gold); color: #241d0c; border-radius: 6px; padding: 2px 7px; font-weight: 900; margin-right: 8px; font-size: 13px; }
+label { display: block; color: #aab6d0; font-weight: 700; margin: 14px 0 6px; font-size: 14px; }
+.field { width: 100%; background: #0f1728; color: var(--text); border: 2px solid #2a3858; border-radius: 12px; padding: 14px; font-size: 16px; outline: none; }
 .field:focus { border-color: var(--gold); }
 
-.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 9px; }
+.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
 .grid-3 { grid-template-columns: repeat(3, 1fr); }
-.choice { background: #10192b; border: 2px solid #2b3857; border-radius: 15px; padding: 13px 7px; text-align: center; color: #aab5ce; min-height: 76px; font-weight: 800; transition: 0.2s; }
-.choice b { display: block; font-size: 16px; color: inherit; }
-.choice small { display: block; font-weight: 500; font-size: 11px; margin-top: 4px; }
+.choice { background: #10192b; border: 2px solid #2b3857; border-radius: 14px; padding: 12px 6px; text-align: center; color: #aab5ce; min-height: 72px; font-weight: 800; transition: 0.2s; }
+.choice b { display: block; font-size: 15px; color: inherit; }
+.choice small { display: block; font-weight: 500; font-size: 11px; margin-top: 4px; color: var(--muted); }
 .choice.active { border-color: var(--gold); background: #222d46; color: var(--gold); box-shadow: 0 0 0 1px #f2c45122; }
 
-.primary { border: 0; border-radius: 15px; background: var(--gold); color: #211b0c; font-weight: 900; padding: 16px 20px; width: 100%; font-size: 18px; box-shadow: 0 7px 0 #a47c27; margin-top: 18px; }
+.primary { border: 0; border-radius: 14px; background: var(--gold); color: #211b0c; font-weight: 900; padding: 15px 18px; width: 100%; font-size: 17px; box-shadow: 0 6px 0 #a47c27; margin-top: 16px; }
 .primary:disabled { background: #4a422f; color: #888; box-shadow: none; cursor: not-allowed; }
-.secondary { background: #202d47; border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; color: #dce4f5; font-weight: 700; }
+.secondary { background: #202d47; border: 1px solid var(--line); border-radius: 10px; padding: 9px 12px; color: #dce4f5; font-weight: 700; font-size: 13px; }
 
 /* Status Bar & Header */
-.hero { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; }
-.hero h2 { font-size: 26px; color: white; margin: 0 0 4px; letter-spacing: 1px; }
-.crest { width: 74px; height: 74px; border-radius: 18px; background: linear-gradient(145deg,#5c2739,#a94c42); display: grid; place-items: center; font-size: 35px; border: 2px solid #d5a84a; }
-.meta { color: var(--muted); font-size: 13px; }
-.bigline { font-size: 14px; color: var(--muted); margin: 10px 0; }
+.hero { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; }
+.hero h2 { font-size: 24px; color: white; margin: 0 0 4px; letter-spacing: 1px; }
+.crest { width: 66px; height: 66px; border-radius: 16px; background: linear-gradient(145deg,#5c2739,#a94c42); display: grid; place-items: center; font-size: 32px; border: 2px solid #d5a84a; }
+.meta { color: var(--muted); font-size: 13px; line-height: 1.4; }
+.bigline { font-size: 13px; color: var(--muted); margin: 10px 0; }
 
 .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 10px; }
-.stat { background: #10192b; border: 1px solid var(--line); border-radius: 12px; padding: 10px; }
+.stat { background: #10192b; border: 1px solid var(--line); border-radius: 12px; padding: 9px; }
 .stat span { display: block; color: var(--muted); font-size: 11px; }
-.stat strong { font-size: 18px; }
+.stat strong { font-size: 17px; }
 .bar { height: 6px; background: #0b1322; border-radius: 10px; margin-top: 5px; overflow: hidden; }
 .bar i { display: block; height: 100%; background: var(--green); border-radius: 10px; }
 
 /* Attribute Allocation Box */
-.attr-allocator { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 10px; background: #101827; padding: 12px; border-radius: 12px; border: 1px solid var(--line); }
+.attr-allocator { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 10px; background: #101827; padding: 10px; border-radius: 12px; border: 1px solid var(--line); }
 .attr-item { text-align: center; }
-.attr-item b { display: block; font-size: 12px; color: var(--muted); }
-.attr-item span { font-size: 16px; font-weight: 900; color: var(--gold); }
-.attr-item button { margin-top: 4px; background: #263653; border: 1px solid var(--gold); color: var(--gold); border-radius: 6px; width: 100%; font-weight: bold; font-size: 12px; }
+.attr-item b { display: block; font-size: 11px; color: var(--muted); }
+.attr-item span { font-size: 15px; font-weight: 900; color: var(--gold); }
+.attr-item button { margin-top: 4px; background: #263653; border: 1px solid var(--gold); color: var(--gold); border-radius: 6px; width: 100%; font-weight: bold; font-size: 11px; padding: 4px 0; }
 
 /* Event Card UI */
-.event-box { background: #121c2e; border: 1px solid var(--line); border-radius: 16px; padding: 16px; margin-bottom: 12px; }
+.event-box { background: #121c2e; border: 1px solid var(--line); border-radius: 14px; padding: 14px; margin-bottom: 10px; }
 .event-chapter { color: var(--purple); font-size: 13px; font-weight: bold; margin-bottom: 6px; display: flex; align-items: center; justify-content: space-between; }
-.event-desc { font-size: 15px; line-height: 1.7; color: #dce4f5; }
+.event-desc { font-size: 14px; line-height: 1.7; color: #dce4f5; }
 
 .eventchoices { display: grid; gap: 10px; margin-top: 12px; }
 
 .choice-btn {
   background: #152238;
   border: 1.5px solid #2d3e61;
-  border-radius: 16px;
-  padding: 12px 16px;
+  border-radius: 14px;
+  padding: 12px 14px;
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 12px;
   text-align: left;
   transition: all 0.2s ease;
   cursor: pointer;
@@ -103,11 +104,10 @@ label { display: block; color: #aab6d0; font-weight: 700; margin: 15px 0 8px; }
 .choice-btn:hover {
   border-color: var(--gold);
   background: #1d2d4a;
-  transform: translateY(-1px);
 }
 .rate-circle {
-  width: 46px;
-  height: 46px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   border: 3px solid var(--gold);
   background: rgba(242, 196, 81, 0.08);
@@ -119,68 +119,69 @@ label { display: block; color: #aab6d0; font-weight: 700; margin: 15px 0 8px; }
   color: var(--gold);
   flex-shrink: 0;
 }
-.rate-circle.hidden-rate { border-color: var(--purple); color: var(--purple); background: rgba(179, 136, 255, 0.08); }
 
-/* 2D Canvas Battle Visuals (Reference Images 3 & 4) */
+/* 2D Canvas Responsive Container */
 .battle-canvas-container {
   position: relative;
   width: 100%;
-  background: #141b27;
+  background: #121926;
   border: 2px solid var(--gold);
-  border-radius: 16px;
+  border-radius: 14px;
   overflow: hidden;
   margin-top: 12px;
 }
 canvas#battleCanvas {
   display: block;
   width: 100%;
-  height: 240px;
-  background: #1a2636;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  background: #182333;
 }
 .canvas-hud {
   position: absolute;
-  top: 10px;
-  left: 10px;
-  right: 10px;
+  top: 8px;
+  left: 8px;
+  right: 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   pointer-events: none;
+  z-index: 2;
 }
-.hud-team { background: rgba(13, 20, 35, 0.85); border: 1px solid var(--line); border-radius: 10px; padding: 6px 12px; font-size: 12px; }
-.hud-vs { font-weight: 900; font-size: 16px; color: var(--gold); text-shadow: 0 0 8px rgba(0,0,0,0.8); }
+.hud-team { background: rgba(13, 20, 35, 0.85); border: 1px solid var(--line); border-radius: 8px; padding: 4px 8px; font-size: 11px; }
+.hud-vs { font-weight: 900; font-size: 14px; color: var(--gold); text-shadow: 0 0 6px rgba(0,0,0,0.8); }
 
 /* Outcome Card */
 .outcome-card {
   background: #111a2d;
   border: 2px solid var(--gold);
-  border-radius: 18px;
-  padding: 16px;
+  border-radius: 16px;
+  padding: 14px;
   margin-top: 12px;
 }
-.outcome-status { font-size: 18px; font-weight: 900; margin-bottom: 8px; }
+.outcome-status { font-size: 17px; font-weight: 900; margin-bottom: 6px; }
 .outcome-status.success { color: var(--green); }
 .outcome-status.fail { color: var(--red); }
 .outcome-text { font-size: 14px; line-height: 1.7; color: #edf1fb; margin-bottom: 10px; }
-.outcome-changes { background: #0b1220; border-radius: 10px; padding: 10px; font-size: 13px; color: var(--gold); margin-bottom: 14px; }
+.outcome-changes { background: #0b1220; border-radius: 8px; padding: 8px 12px; font-size: 12px; color: var(--gold); margin-bottom: 12px; }
 
 /* Training System UI */
-.training-banner { background: #162238; border-left: 4px solid var(--gold); padding: 12px 15px; border-radius: 8px; margin-bottom: 15px; }
-.training-banner h3 { margin: 0 0 5px; font-size: 16px; color: var(--gold); }
-.training-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-.t-card { background: #10192c; border: 2px solid #283754; border-radius: 14px; padding: 12px; text-align: center; cursor: pointer; transition: 0.2s; }
-.t-card.selected { border-color: var(--gold); background: #1c2b47; box-shadow: 0 0 12px rgba(242,196,81,0.2); }
-.t-title { font-size: 15px; font-weight: 900; color: #fff; margin-bottom: 4px; }
-.t-gain { color: var(--green); font-size: 13px; font-weight: bold; }
-.t-stars { color: var(--gold); font-size: 12px; margin: 4px 0; }
+.training-banner { background: #162238; border-left: 4px solid var(--gold); padding: 10px 12px; border-radius: 8px; margin-bottom: 12px; }
+.training-banner h3 { margin: 0 0 4px; font-size: 15px; color: var(--gold); }
+.training-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.t-card { background: #10192c; border: 2px solid #283754; border-radius: 12px; padding: 10px; text-align: center; cursor: pointer; transition: 0.2s; }
+.t-card.selected { border-color: var(--gold); background: #1c2b47; box-shadow: 0 0 10px rgba(242,196,81,0.2); }
+.t-title { font-size: 14px; font-weight: 900; color: #fff; margin-bottom: 3px; }
+.t-gain { color: var(--green); font-size: 12px; font-weight: bold; }
+.t-stars { color: var(--gold); font-size: 11px; margin: 3px 0; }
 
-.log { border-left: 2px solid #53627f; padding-left: 13px; margin: 10px 0; color: #bdc9df; line-height: 1.6; font-size: 13px; }
-.tag { display: inline-block; background: #2b3855; color: var(--gold); border-radius: 7px; padding: 2px 7px; font-size: 11px; margin-right: 5px; }
+.log { border-left: 2px solid #53627f; padding-left: 10px; margin: 8px 0; color: #bdc9df; line-height: 1.5; font-size: 12px; }
+.tag { display: inline-block; background: #2b3855; color: var(--gold); border-radius: 6px; padding: 1px 6px; font-size: 11px; margin-right: 4px; }
 .hidden { display: none !important; }
-.toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #263653; border: 1px solid var(--gold); padding: 11px 16px; border-radius: 99px; z-index: 10; box-shadow: 0 8px 30px #0008; max-width: 90%; text-align: center; }
-footer { text-align: center; color: #73819d; font-size: 12px; margin: 24px 0; }
+.toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #263653; border: 1px solid var(--gold); padding: 10px 15px; border-radius: 99px; z-index: 10; box-shadow: 0 8px 30px #0008; max-width: 90%; text-align: center; font-size: 13px; }
+footer { text-align: center; color: #73819d; font-size: 11px; margin: 20px 0; }
 
-@media(max-width: 650px) {
+@media(max-width: 600px) {
   .grid { grid-template-columns: repeat(2, 1fr); }
   .grid-3 { grid-template-columns: repeat(1, 1fr); }
   .stats { grid-template-columns: repeat(2, 1fr); }
@@ -193,45 +194,45 @@ footer { text-align: center; color: #73819d; font-size: 12px; margin: 24px 0; }
 <div class="wrap">
 <div class="topline"></div>
 <header class="brand">
-  <div><h1>亂世英傑</h1><small>THREE KINGDOMS · GENERAL LIFE SIMULATOR</small></div>
-  <span class="pill">⚔️ 2D 戰場模擬版</span>
+  <div><h1>亂世英傑</h1><small>THREE KINGDOMS · COMMONER TO GENERAL</small></div>
+  <span class="pill">🌾 平民崛起版</span>
 </header>
 
-<!-- 1. 武將建立介面 -->
+<!-- 1. 武將建立介面 (平民百姓開局) -->
 <section class="panel" id="create">
-  <h2>建立你的武將</h2>
-  <label><span class="sectionno">01</span>武將姓名</label>
-  <input class="field" id="name" maxlength="12" placeholder="例如：趙雲、周瑜" value="雲長">
-  <label>字（選填）</label>
+  <h2>創立你的角色</h2>
+  <label><span class="sectionno">01</span>百姓姓名</label>
+  <input class="field" id="name" maxlength="12" placeholder="例如：張三、阿雲、你的名字" value="阿雲">
+  <label>字/別名（選填）</label>
   <input class="field" id="courtesy" maxlength="12" placeholder="例如：子龍">
   
-  <label><span class="sectionno">02</span>出生地區（決定地域專屬角色事件）</label>
+  <label><span class="sectionno">02</span>出身鄉里（影響遇合與風土）</label>
   <div class="grid grid-3" id="birthplaces">
-    <button class="choice active" data-v="幽州"><b>🐴 幽州</b><small>趙雲·公孫瓚</small></button>
-    <button class="choice" data-v="兗州"><b>🌾 兗州</b><small>荀彧·典韋</small></button>
-    <button class="choice" data-v="荊州"><b>🛶 荊州</b><small>諸葛亮·水鏡先生</small></button>
-    <button class="choice" data-v="江東"><b>🌊 江東</b><small>周瑜·孫策</small></button>
-    <button class="choice" data-v="益州"><b>⛰️ 益州</b><small>法正·張松</small></button>
-    <button class="choice" data-v="涼州"><b>🗡️ 涼州</b><small>馬超·韓遂</small></button>
+    <button class="choice active" data-v="幽州"><b>🐴 幽州</b><small>邊境民風悍勇</small></button>
+    <button class="choice" data-v="兗州"><b>🌾 兗州</b><small>中原農桑樞紐</small></button>
+    <button class="choice" data-v="荊州"><b>🛶 荊州</b><small>文風鼎盛名士多</small></button>
+    <button class="choice" data-v="江東"><b>🌊 江東</b><small>水鄉長江漁獵</small></button>
+    <button class="choice" data-v="益州"><b>⛰️ 益州</b><small>蜀道天府糧倉</small></button>
+    <button class="choice" data-v="涼州"><b>🗡️ 涼州</b><small>騎獵邊馬強悍</small></button>
   </div>
 
-  <label><span class="sectionno">03</span>武將定位</label>
-  <div class="grid" id="roles">
-    <button class="choice active" data-v="猛將"><b>⚔️ 猛將</b><small>武力與單挑</small></button>
-    <button class="choice" data-v="統帥"><b>🛡️ 統帥</b><small>領兵與防守</small></button>
-    <button class="choice" data-v="軍師"><b>📜 軍師</b><small>智謀與計策</small></button>
-    <button class="choice" data-v="全才"><b>☯️ 全才</b><small>均衡發展</small></button>
+  <label><span class="sectionno">03</span>志向與研習傾向（決定平民初始天賦）</label>
+  <div class="grid" id="ambitions">
+    <button class="choice active" data-v="習武"><b>⚔️ 習武尚勇</b><small>初始 武力+6</small></button>
+    <button class="choice" data-v="兵法"><b>🛡️ 研讀兵書</b><small>初始 統率+6</small></button>
+    <button class="choice" data-v="謀略"><b>📜 研習計謀</b><small>初始 智謀+6</small></button>
+    <button class="choice" data-v="農桑"><b>🌾 經營農桑</b><small>初始 政治+6</small></button>
   </div>
 
-  <label><span class="sectionno">04</span>初始特質</label>
+  <label><span class="sectionno">04</span>出身特質</label>
   <div class="grid" id="traits">
-    <button class="choice active" data-v="忠義"><b>義薄雲天</b><small>信任成長加成</small></button>
-    <button class="choice" data-v="膽識"><b>膽識過人</b><small>戰鬥效果提升</small></button>
-    <button class="choice" data-v="足智"><b>足智多謀</b><small>智謀判定加成</small></button>
-    <button class="choice" data-v="天命"><b>天命所歸</b><small>聲望獲得提高</small></button>
+    <button class="choice active" data-v="忠厚"><b>忠厚耿直</b><small>信任獲得加成</small></button>
+    <button class="choice" data-v="機敏"><b>機敏過人</b><small>事件成功率提升</small></button>
+    <button class="choice" data-v="堅韌"><b>吃苦耐勞</b><small>修練效果加成</small></button>
+    <button class="choice" data-v="名聲"><b>鄉里好名</b><small>聲望獲得提高</small></button>
   </div>
 
-  <button class="primary" id="start">揭竿而起・踏入三國亂世</button>
+  <button class="primary" id="start">從布衣開始·踏入三國亂世</button>
 </section>
 
 <!-- 2. 遊戲主畫面 -->
@@ -239,28 +240,28 @@ footer { text-align: center; color: #73819d; font-size: 12px; margin: 24px 0; }
   <div class="panel">
     <div class="hero">
       <div>
-        <div class="meta" id="factionline">在野草莽 · 幽州出身</div>
-        <h2 id="heroName">雲長</h2>
-        <div class="meta" id="herotitle">字雲長 · 18 歲</div>
+        <div class="meta" id="factionline">布衣平民 · 幽州鄉勇</div>
+        <h2 id="heroName">阿雲</h2>
+        <div class="meta" id="herotitle">身分：市井百姓 · 18 歲</div>
       </div>
-      <div class="crest" id="crest">⚔️</div>
+      <div class="crest" id="crest">🌾</div>
     </div>
-    <div class="bigline" id="seasonline">公元 189 年 ｜ 第 1 / 10 事件</div>
+    <div class="bigline" id="seasonline">公元 189 年 ｜ 當前第 1 / 10 事件</div>
     <div class="stats" id="quickstats"></div>
 
-    <!-- 戰役點數自由加點區 -->
-    <div style="margin-top:12px; font-size:13px; font-weight:bold; color:var(--gold);">
-      🎯 戰役獲得額外自由訓練點數：<span id="trainPointsText" style="font-size:16px;">0</span> 點
+    <!-- 戰役加點區 -->
+    <div style="margin-top:10px; font-size:12px; font-weight:bold; color:var(--gold);">
+      🎯 戰役獲取的自由修練點數：<span id="trainPointsText" style="font-size:15px;">0</span> 點
     </div>
     <div class="attr-allocator">
-      <div class="attr-item"><b>武力 <span id="v-武力">78</span></b><button onclick="spendPoint('武力')">+1</button></div>
-      <div class="attr-item"><b>統率 <span id="v-統率">58</span></b><button onclick="spendPoint('統率')">+1</button></div>
-      <div class="attr-item"><b>智謀 <span id="v-智謀">42</span></b><button onclick="spendPoint('智謀')">+1</button></div>
-      <div class="attr-item"><b>政治 <span id="v-政治">35</span></b><button onclick="spendPoint('政治')">+1</button></div>
-      <div class="attr-item"><b>魅力 <span id="v-魅力">55</span></b><button onclick="spendPoint('魅力')">+1</button></div>
+      <div class="attr-item"><b>武力 <span id="v-武力">18</span></b><button onclick="spendPoint('武力')">+1</button></div>
+      <div class="attr-item"><b>統率 <span id="v-統率">15</span></b><button onclick="spendPoint('統率')">+1</button></div>
+      <div class="attr-item"><b>智謀 <span id="v-智謀">15</span></b><button onclick="spendPoint('智謀')">+1</button></div>
+      <div class="attr-item"><b>政治 <span id="v-政治">12</span></b><button onclick="spendPoint('政治')">+1</button></div>
+      <div class="attr-item"><b>魅力 <span id="v-魅力">15</span></b><button onclick="spendPoint('魅力')">+1</button></div>
     </div>
 
-    <div class="actionrow" style="display:flex;gap:8px;margin-top:12px;">
+    <div class="actionrow" style="display:flex;gap:8px;margin-top:10px;">
       <button class="secondary" id="profileBtn">📜 人物傳記</button>
       <button class="secondary" id="saveBtn">💾 儲存進度</button>
       <button class="secondary" id="resetBtn">↺ 重新開始</button>
@@ -269,7 +270,7 @@ footer { text-align: center; color: #73819d; font-size: 12px; margin: 24px 0; }
 
   <!-- 3. 事件面板 -->
   <div class="panel" id="eventPanel">
-    <h2>歷史與機遇 · 抉擇</h2>
+    <h2>亂世際遇 · 抉擇</h2>
     
     <div class="event-box">
       <div class="event-chapter">
@@ -287,19 +288,19 @@ footer { text-align: center; color: #73819d; font-size: 12px; margin: 24px 0; }
     
     <div class="eventchoices" id="choices"></div>
 
-    <!-- 2D Canvas 動態戰場渲染區 (參考圖 3 與 圖 4 實時 2D 動畫) -->
+    <!-- 2D Canvas 動態戰場渲染區 (按 iPhone 等手機比例完美繪製圓形與文字) -->
     <div class="battle-canvas-container hidden" id="battleCanvasBox">
       <div class="canvas-hud">
-        <div class="hud-team" style="color:var(--green)">🛡️ 我軍陣型：<span id="hudMyName">己方本陣</span></div>
+        <div class="hud-team" style="color:var(--green)">🛡️ 我方隊伍：<span id="hudMyName">鄉勇隊</span></div>
         <div class="hud-vs">VS</div>
-        <div class="hud-team" style="color:var(--red)">⚔️ 敵軍陣形：<span id="hudEnemyName">敵方部曲</span></div>
+        <div class="hud-team" style="color:var(--red)">⚔️ 對手陣形：<span id="hudEnemyName">山賊部曲</span></div>
       </div>
-      <canvas id="battleCanvas" width="800" height="300"></canvas>
+      <canvas id="battleCanvas"></canvas>
     </div>
 
     <!-- 後續反應結果展示 -->
     <div class="outcome-card hidden" id="outcomeBox">
-      <div class="outcome-status" id="outcomeStatus">⚔️ 戰報結算中...</div>
+      <div class="outcome-status" id="outcomeStatus">⚔️ 結算中...</div>
       <div class="outcome-text" id="outcomeText">...</div>
       <div class="outcome-changes" id="outcomeChanges">獲得：...</div>
       <button class="primary" id="nextStepBtn" style="margin-top:10px;">點擊進入下一個事件 →</button>
@@ -311,7 +312,7 @@ footer { text-align: center; color: #73819d; font-size: 12px; margin: 24px 0; }
     <h2>年度恆常演武集訓 <span class="meta" style="font-size:12px;" id="trainCounter">請選擇 3 堂課</span></h2>
     <div class="training-banner">
       <h3>🔶 恆常演武集訓營（第 5 / 10 事件）</h3>
-      <p>軍師與教練組已安排 6 堂訓練課程，請選擇 3 堂修練提升技能！</p>
+      <p>平民可透過磨修提升屬性，步步為營踏上名將之路！</p>
     </div>
 
     <div class="training-grid" id="trainingGrid"></div>
@@ -321,116 +322,122 @@ footer { text-align: center; color: #73819d; font-size: 12px; margin: 24px 0; }
   <!-- 生涯履歷紀錄 -->
   <div class="panel">
     <h2>生涯歷史紀錄</h2>
-    <div id="timeline"><div class="log">亂世英雄傳奇即將展開……</div></div>
+    <div id="timeline"><div class="log">亂世百姓傳奇即將展開……</div></div>
   </div>
 </section>
 
-<footer>亂世英傑 · 三國演義模擬器｜單機版進度儲存於瀏覽器</footer>
+<footer>亂世英傑 · 三國百姓人生模擬器｜單機版進度儲存於瀏覽器</footer>
 </div>
 <div class="toast hidden" id="toast"></div>
 
 <script>
 const $ = id => document.getElementById(id);
 
-const pick = { birthplace: "幽州", role: "猛將", trait: "忠義" };
+const pick = { birthplace: "幽州", ambition: "習武", trait: "忠厚" };
 
-const roleBase = {
-  猛將: { 武力: 78, 統率: 58, 智謀: 42, 政治: 35, 魅力: 55 },
-  統帥: { 武力: 58, 統率: 80, 智謀: 58, 政治: 48, 魅力: 55 },
-  軍師: { 武力: 30, 統率: 48, 智謀: 84, 政治: 68, 魅力: 58 },
-  全才: { 武力: 60, 統率: 62, 智謀: 62, 政治: 60, 魅力: 60 }
-};
+// 平民百姓初始基礎能力（極低，需靠修練與戰役累積）
+const commonerBase = { 武力: 18, 統率: 15, 智謀: 15, 政治: 12, 魅力: 15 };
 
-const factionIcons = { "在野草莽": "⚔️", "蜀漢": "🐉", "曹魏": "🦅", "東吳": "🌊", "獨立群雄": "🔥" };
+const factionIcons = { "在野百姓": "🌾", "蜀漢": "🐉", "曹魏": "🦅", "東吳": "🌊", "獨立群雄": "🔥" };
 
-// 劇本事件庫
+// 劇本事件庫：故事從平民防守村莊、響應招募，再被大勢力招攬為將
 const historyEvents = [
   {
     isBattle: true,
-    year: 189, era: "中平六年", title: "黃巾兵劫與城下激戰",
-    intro: "◆ 黃巾烽火 · 戰役事件",
-    text: "黃巾賊數千精兵直逼城下！官軍守將請你親自率隊出城突襲敵方中軍鼓樓陣地！",
+    year: 189, era: "中平六年", title: "山賊掠村與鄉勇自衛",
+    intro: "◆ 平民篇 · 第一次戰鬥",
+    text: "黃巾殘部襲擊你所在的村莊！身為布衣平民的你召集鄉親組成自衛隊，敵方首領率部逼近！",
     choices: [
       {
-        title: "率騎兵正面鑿穿敵陣",
-        sub: "帶領重騎兵直取賊首陣營（戰役動態演化）",
-        stat: "武力", baseRate: 10,
-        win: { text: "2D 戰場中你率騎兵如狂風過境，一舉破開敵軍鼓樓！賊首落馬！", effect: { 武力: 3, 聲望: 8, 疲勞: 10 }, points: 5 },
-        fail: { text: "敵軍陣型嚴密，突衛被圍，經一番血戰後突圍撤回。", effect: { 武力: 1, 疲勞: 20 }, points: 2 }
+        title: "手持農具勇猛迎敵",
+        sub: "憑藉勇氣衝鋒（檢定：武力）",
+        stat: "武力", baseRate: 5,
+        win: { text: "你親手擊退敵首！鄉親們大聲為你歡呼，聲望初露！", effect: { 武力: 3, 聲望: 8, 疲勞: 10 }, points: 4 },
+        fail: { text: "因缺乏精良裝備，你身受輕傷，勉強擊退山賊。", effect: { 武力: 1, 疲勞: 18 }, points: 2 }
       },
       {
-        title: "設伏誘敵於狹谷圍殲",
-        sub: "利用地形安排弓弩手伏擊（戰役動態演化）",
-        stat: "統率", baseRate: 15,
-        win: { text: "矢如雨下！敵軍進入伏擊圈被殲滅過半！大獲全勝！", effect: { 統率: 3, 信任: 6 }, points: 4 },
-        fail: { text: "敵軍未完全中計，伏擊戰變成了混戰。", effect: { 統率: 1, 疲勞: 15 }, points: 1 }
+        title: "指揮鄉勇利用村口地形設防",
+        sub: "擺出簡陋防線（檢定：統率）",
+        stat: "統率", baseRate: 8,
+        win: { text: "村口隘路成功阻擋敵軍，你的指揮天賦得到了鄉親認可！", effect: { 統率: 3, 信任: 6 }, points: 3 },
+        fail: { text: "鄉勇陣腳混亂，混戰中付出了代價才化解危機。", effect: { 統率: 1, 疲勞: 15 }, points: 1 }
       }
     ]
   },
   {
     isBattle: false,
-    year: 189, era: "中平六年", title: "鄉里名士拜訪",
-    intro: "◆ 紀事事件",
-    text: "當地名士聞聽你的威名，特前來拜會，與你論述天下政局。",
+    year: 189, era: "中平六年", title: "官府招募鄉勇徵兵令",
+    intro: "◆ 平民篇 · 命運抉擇",
+    text: "黃巾兵劫蔓延，地方官府張貼公告徵集勇士。你決定回應徵召投身軍旅。",
     choices: [
       {
-        title: "熱情款待暢談理想", sub: "展現胸懷與仁義", stat: "魅力", baseRate: 20,
-        win: { text: "名士大加讚賞，贈予名馬與薦舉信！", effect: { 魅力: 3, 聲望: 5 } },
-        fail: { text: "名士與你客套一番後告辭。", effect: { 魅力: 1 } }
+        title: "應徵入伍成為基層步卒", sub: "從最底層士兵做起（檢定：武力）", stat: "武力", baseRate: 10,
+        win: { text: "校尉見你身手不凡，拔擢你為【隊長】，開始掌管數名小兵！", effect: { 武力: 2, 聲望: 6, 信任: 10 } },
+        fail: { text: "你入伍成為一名普通弓步兵，從頭開始修練。", effect: { 武力: 1, 信任: 5 } }
+      },
+      {
+        title: "擔任軍糧管理小吏", sub: "發揮算術與管理才能（檢定：政治）", stat: "政治", baseRate: 10,
+        win: { text: "糧草調配井井有條，軍需官極為賞識你，任命你為【糧餉吏】！", effect: { 政治: 3, 信任: 10 } },
+        fail: { text: "糧食計算偶有差池，所幸並未釀成大禍。", effect: { 政治: 1 } }
       }
     ]
   },
   {
     isBattle: false,
-    year: 189, era: "中平六年", title: "邊境糧荒與賑災",
-    intro: "◆ 紀事事件",
-    text: "連年戰亂導致流民失所，你必須決定如何處置部曲糧草。",
+    year: 189, era: "中平六年", title: "夜間軍營密謀與巡邏",
+    intro: "◆ 軍旅篇 · 細節考驗",
+    text: "在營中巡夜時，你發現有幾名疑是敵方細作的人在馬廄附近徘徊。",
     choices: [
       {
-        title: "開倉賑濟流民", sub: "贏得民心與威望", stat: "政治", baseRate: 15,
-        win: { text: "百姓萬民稱頌，紛紛投奔你的麾下。", effect: { 政治: 4, 信任: 8 } },
-        fail: { text: "糧草消耗過大，部隊物資略顯緊張。", effect: { 政治: 1 } }
+        title: "隻身跟蹤並制服細作", sub: "單打獨鬥考驗膽量（檢定：武力）", stat: "武力", baseRate: 0,
+        win: { text: "你果斷出手擒拿細作，主將大為讚賞，獎勵軍資與修練機會！", effect: { 武力: 3, 聲望: 8 } },
+        fail: { text: "細作驚慌逃跑，你呼喚同伴才將其逼退。", effect: { 武力: 1, 疲勞: 10 } }
+      },
+      {
+        title: "設計引蛇出洞設伏捕獲", sub: "運用智謀包抄（檢定：智謀）", stat: "智謀", baseRate: 5,
+        win: { text: "人贓俱獲！軍師大讚你心思縝密！", effect: { 智謀: 3, 信任: 8 } },
+        fail: { text: "計畫出現破綻，細作趁亂逃脫。", effect: { 智謀: 1 } }
       }
     ]
   },
   {
     isBattle: false,
-    year: 190, era: "初平元年", title: "十八路諸侯盟約",
-    intro: "◆ 擇主轉捩點",
-    text: "關東諸侯會盟討伐董卓，天下格局重組，你決定加入哪一方勢力？",
+    year: 190, era: "初平元年", title: "十八路諸侯會盟·大勢力招攬",
+    intro: "◆ 人生轉捩點 · 擇主招攬",
+    text: "討伐董卓會盟，你的戰功與聲望吸引了幾位大勢力使者的注意！這是你擺脫平民身份、晉升將領的絕佳時機：",
     choices: [
       {
-        title: "投奔劉備（蜀漢）", sub: "仁義至上，共同創業", setFaction: "蜀漢", stat: "魅力", baseRate: 20,
-        win: { text: "劉備攜關張隆重接納你！主公信任度大幅提升！", effect: { 信任: 25, 魅力: 5 } },
-        fail: { text: "劉備深為感動，接納你入營。", effect: { 信任: 15 } }
+        title: "接受劉備招攬（加入蜀漢）", sub: "劉備親自登門邀請，任命你為【先鋒將】", setFaction: "蜀漢", stat: "魅力", baseRate: 15,
+        win: { text: "劉備握住你的手：「足下起於布衣，真英傑也！」正式登錄為蜀漢軍官！", effect: { 信任: 25, 魅力: 5, 聲望: 10 } },
+        fail: { text: "劉備熱情接納你加入麾下。", effect: { 信任: 15 } }
       },
       {
-        title: "投奔曹操（曹魏）", sub: "挾天子以令諸侯，雄霸天下", setFaction: "曹魏", stat: "政治", baseRate: 15,
-        win: { text: "曹操大喜：「足下真乃吾之子房也！」", effect: { 信任: 22, 政治: 5 } },
-        fail: { text: "曹操授你軍職，納入麾下。", effect: { 信任: 15 } }
+        title: "接受曹操招攬（加入曹魏）", sub: "唯才是舉，曹操親封你為【百夫長】", setFaction: "曹魏", stat: "政治", baseRate: 15,
+        win: { text: "曹操讚許：「賞罰分明，唯才是舉！」你獲贈寶劍與軍職！", effect: { 信任: 22, 政治: 5, 聲望: 10 } },
+        fail: { text: "曹操接納你入營，賦予基層軍職。", effect: { 信任: 15 } }
       },
       {
-        title: "投奔孫策（東吳）", sub: "割據江東，虎視中原", setFaction: "東吳", stat: "統率", baseRate: 15,
-        win: { text: "孫策與周瑜同你結為摯友，共謀江東大業！", effect: { 信任: 22, 統率: 5 } },
-        fail: { text: "孫策歡迎你加入江東軍。", effect: { 信任: 15 } }
+        title: "接受孫策招攬（加入東吳）", sub: "江東招攬勇士，任命你為【水師校尉】", setFaction: "東吳", stat: "統率", baseRate: 15,
+        win: { text: "孫策與你暢飲結交，正式引薦你進入江東軍中！", effect: { 信任: 22, 統率: 5, 聲望: 10 } },
+        fail: { text: "孫策歡迎你加入江東陣營。", effect: { 信任: 15 } }
       }
     ]
   },
   {
     isBattle: true,
-    year: 192, era: "初平三年", title: "虎牢關/界橋交鋒大戰",
-    intro: "◆ 大決戰 · 戰役事件",
-    text: "兩軍連營數里，敵軍精銳騎兵發起猛烈衝鋒！戰場生死在一瞬之間！",
+    year: 192, era: "初平三年", title: "界橋/虎牢關正面大決戰",
+    intro: "◆ 武將篇 · 2D 動態戰役",
+    text: "身為新晉將領的你親自帶隊出征，敵方精兵列陣，戰場萬馬奔騰！",
     choices: [
       {
-        title: "親自出陣單挑敵將", sub: "陣前斬將，大振士氣（2D 戰場單挑）", stat: "武力", baseRate: 0,
-        win: { text: "2D 動畫中你一槍將敵將刺落馬下！敵軍全線崩潰！", effect: { 武力: 4, 聲望: 12 }, points: 5 },
-        fail: { text: "敵將武藝高強，兩人交手數十回合後各自鳴金。", effect: { 武力: 1, 疲勞: 15 }, points: 2 }
+        title: "率麾下騎兵衝鋒陷陣", sub: "陣前斬將，大振士氣（2D 動畫實況）", stat: "武力", baseRate: -5,
+        win: { text: "在 2D 戰場中你一馬當先破開敵陣！全軍士氣大振！", effect: { 武力: 4, 聲望: 12 }, points: 5 },
+        fail: { text: "敵陣異常堅固，奮戰後部隊被逼退。", effect: { 武力: 1, 疲勞: 20 }, points: 2 }
       },
       {
-        title: "指揮弓弩連射陣破騎兵", sub: "箭陣齊發（2D 戰場箭雨打擊）", stat: "統率", baseRate: 10,
-        win: { text: "萬箭齊發！敵軍騎兵陣形被瞬間撕碎！大獲全勝！", effect: { 統率: 4, 信任: 8 }, points: 4 },
-        fail: { text: "敵騎速度極快，衝破了第一道箭網。", effect: { 統率: 1, 疲勞: 20 }, points: 1 }
+        title: "嚴密佈置弓弩連射陣", sub: "陣地射擊壓制（2D 動畫實況）", stat: "統率", baseRate: 5,
+        win: { text: "萬箭齊發！敵軍騎兵陣型被精準撕碎！大獲全勝！", effect: { 統率: 4, 信任: 8 }, points: 4 },
+        fail: { text: "敵騎速度極快，衝破了第一道箭網。", effect: { 統率: 1, 疲勞: 15 }, points: 1 }
       }
     ]
   }
@@ -458,7 +465,7 @@ function bindGroup(id, key) {
   });
 }
 bindGroup("birthplaces", "birthplace");
-bindGroup("roles", "role");
+bindGroup("ambitions", "ambition");
 bindGroup("traits", "trait");
 
 // 戰役訓練點數加點
@@ -469,26 +476,29 @@ function spendPoint(attr) {
     renderState();
     toast(`已提升【${attr}】至 ${s.attrs[attr]}！`);
   } else if (s.extraTrainingPoints <= 0) {
-    toast("目前沒有剩餘的戰役額外訓練點數！");
+    toast("目前沒有剩餘的戰役額外點數！");
   }
 }
 
 // 開始遊戲
 function startGame() {
-  const name = $("name").value.trim() || "無名將";
-  let attrs = { ...roleBase[pick.role] };
-  if (pick.trait === "膽識") attrs.武力 += 7;
-  if (pick.trait === "足智") attrs.智謀 += 7;
+  const name = $("name").value.trim() || "阿雲";
+  let attrs = { ...commonerBase };
+
+  // 根據志向給予平民微幅加成
+  if (pick.ambition === "習武") attrs.武力 += 6;
+  if (pick.ambition === "兵法") attrs.統率 += 6;
+  if (pick.ambition === "謀略") attrs.智謀 += 6;
+  if (pick.ambition === "農桑") attrs.政治 += 6;
 
   s = {
     name, courtesy: $("courtesy").value.trim(),
-    birthplace: pick.birthplace, faction: "在野草莽", role: pick.role, trait: pick.trait,
+    birthplace: pick.birthplace, faction: "在野百姓", ambition: pick.ambition, trait: pick.trait,
     age: 18, year: 189,
-    eventInYear: 1, // 1 年 10 個事件
+    eventInYear: 1,
     totalEvents: 0,
-    attrs, trust: 50, fame: 10, fatigue: 10,
-    extraTrainingPoints: 0, // 戰役獲得點數
-    awakenedCount: 0, isAwakened: false,
+    attrs, trust: 20, fame: 5, fatigue: 10,
+    extraTrainingPoints: 0,
     log: [], ended: false
   };
 
@@ -501,9 +511,9 @@ function startGame() {
 
 function renderState() {
   $("heroName").textContent = s.name;
-  $("factionline").textContent = `${s.faction} · ${s.birthplace}出身 · ${s.role}`;
-  $("herotitle").textContent = (s.courtesy ? `字 ${s.courtesy} · ` : "") + `${s.age} 歲 | ${s.isAwakened ? '⚡無雙神將' : '亂世名將'}`;
-  $("crest").textContent = factionIcons[s.faction] || "⚔️";
+  $("factionline").textContent = `${s.faction} · ${s.birthplace}出身 · 志在${s.ambition}`;
+  $("herotitle").textContent = (s.courtesy ? `字 ${s.courtesy} · ` : "") + `${s.age} 歲 | 身份：${s.faction === '在野百姓' ? '市井平民' : '軍中將領'}`;
+  $("crest").textContent = factionIcons[s.faction] || "🌾";
   $("seasonline").textContent = `公元 ${s.year} 年 ｜ 當前第 ${s.eventInYear} / 10 個事件`;
   $("trainPointsText").textContent = s.extraTrainingPoints;
 
@@ -515,7 +525,7 @@ function renderState() {
     ["聲望威名", s.fame],
     ["主公信任", s.trust],
     ["身心疲勞", s.fatigue, true],
-    ["覺醒進度", `${s.awakenedCount}/5`]
+    ["平民能力總和", Object.values(s.attrs).reduce((a,b)=>a+b,0)]
   ];
 
   $("quickstats").innerHTML = quick.map(([n, v, isBad]) => {
@@ -524,13 +534,17 @@ function renderState() {
     return `<div class="stat"><span>${n}</span><strong>${v}</strong><div class="bar"><i style="width:${clamp(numVal)}%;background:${color}"></i></div></div>`;
   }).join("");
 
-  $("timeline").innerHTML = s.log.slice().reverse().map(x => `<div class="log"><span class="tag">${x.year}年</span>${x.text}</div>`).join("") || '<div class="log">亂世英雄傳奇即將展開……</div>';
+  $("timeline").innerHTML = s.log.slice().reverse().map(x => `<div class="log"><span class="tag">${x.year}年</span>${x.text}</div>`).join("") || '<div class="log">亂世百姓傳奇即將展開……</div>';
 }
 
+// 修正成功率公式：平民數值(15~30) ➔ 成功率約 25%~45%
 function getSuccessRate(choice) {
-  let statVal = s.attrs[choice.stat] || 50;
+  let statVal = s.attrs[choice.stat] || 15;
   let bonus = choice.baseRate || 0;
-  let rate = Math.round(statVal * 0.75 + bonus + 15);
+  if (s.trait === "機敏") bonus += 5;
+  
+  // 公式：屬性 * 1.1 + 基礎加成 + 10
+  let rate = Math.round(statVal * 1.1 + bonus + 10);
   return clamp(rate, 15, 95);
 }
 
@@ -538,7 +552,6 @@ function getSuccessRate(choice) {
 function showCurrentEvent() {
   if (s.ended) return;
 
-  // 判斷是否觸發每年第 5 事件的「恆常集訓」
   if (s.eventInYear === 5) {
     startConstantTraining();
     return;
@@ -572,7 +585,10 @@ function makeChoice(choiceIdx) {
   const ev = historyEvents[currentEventIndex % historyEvents.length];
   const choice = ev.choices[choiceIdx];
 
-  if (choice.setFaction) s.faction = choice.setFaction;
+  if (choice.setFaction) {
+    s.faction = choice.setFaction;
+    toast(`你獲得了看重，正式加入【${s.faction}】！`);
+  }
 
   const rate = getSuccessRate(choice);
   const isSuccess = Math.random() * 100 <= rate;
@@ -580,13 +596,12 @@ function makeChoice(choiceIdx) {
 
   $("choices").classList.add("hidden");
 
-  // 若為戰役事件，觸發 2D Canvas 戰場動畫 (參考圖片 3 & 4)
   if (ev.isBattle) {
     $("battleCanvasBox").classList.remove("hidden");
-    $("hudMyName").textContent = s.name + " 本陣";
+    $("hudMyName").textContent = s.name + (s.faction === '在野百姓' ? " 鄉勇隊" : " 本陣");
     $("hudEnemyName").textContent = "敵軍主力";
     
-    // 播放 Canvas 2D 戰鬥動畫，動畫結束後呈現結果
+    // 執行比例完美的 2D 繪圖動畫
     run2DBattleAnimation(isSuccess, () => {
       finishChoiceProcess(ev, choice, isSuccess, resultObj);
     });
@@ -595,7 +610,7 @@ function makeChoice(choiceIdx) {
   }
 }
 
-// 結算選項成果與發放戰役點數
+// 結算結果
 function finishChoiceProcess(ev, choice, isSuccess, resultObj) {
   let changeTexts = [];
   if (resultObj.effect) {
@@ -616,38 +631,35 @@ function finishChoiceProcess(ev, choice, isSuccess, resultObj) {
     }
   }
 
-  // 發放戰役額外訓練點數
   if (ev.isBattle && resultObj.points) {
     s.extraTrainingPoints += resultObj.points;
-    changeTexts.push(`🎯 戰役訓練點數 +${resultObj.points}`);
+    changeTexts.push(`🎯 戰役加點 +${resultObj.points}`);
   }
 
   s.log.push({
     year: s.year,
-    text: `[第${s.eventInYear}/10事件] ${ev.title} - ${choice.title}（${isSuccess ? '大獲全勝' : '受挫'}）：${resultObj.text}`
+    text: `[第${s.eventInYear}/10事件] ${ev.title} - ${choice.title}（${isSuccess ? '大獲全勝' : '挫折'}）：${resultObj.text}`
   });
 
   renderState();
 
   $("outcomeBox").classList.remove("hidden");
   $("outcomeStatus").className = `outcome-status ${isSuccess ? 'success' : 'fail'}`;
-  $("outcomeStatus").textContent = isSuccess ? "⚔️ 判定成功 / 戰役告捷！" : "⚠️ 判定受挫 / 戰局失利！";
+  $("outcomeStatus").textContent = isSuccess ? "⚔️ 判定成功 / 戰役告捷！" : "⚠️ 判定受挫 / 險象環生！";
   $("outcomeText").textContent = resultObj.text;
   $("outcomeChanges").textContent = "影響結果：" + (changeTexts.join("，") || "無");
 }
 
-// 進入下一個事件 (推進 1/10 年)
 $("nextStepBtn").onclick = () => {
   currentEventIndex++;
   s.totalEvents++;
   s.eventInYear++;
 
-  // 滿 10 個事件推進 1 歲與 1 年
   if (s.eventInYear > 10) {
     s.eventInYear = 1;
     s.year++;
     s.age++;
-    toast(`🎉 歲月流逝，武將年齡成長至 ${s.age} 歲！`);
+    toast(`🎉 歲月流逝，年齡成長至 ${s.age} 歲！`);
   }
 
   renderState();
@@ -655,109 +667,114 @@ $("nextStepBtn").onclick = () => {
 };
 
 /* -------------------------------------------------------------
-   HTML5 Canvas 2D 戰場動態動畫引擎 (參考 Image 3 陣形與 Image 4 2D 俯視)
+   2D Canvas 動畫引擎（專門修正：圓形絕不扁平扭曲、文字寬敞舒適）
 ------------------------------------------------------------- */
 function run2DBattleAnimation(isSuccess, onComplete) {
   const canvas = $("battleCanvas");
   const ctx = canvas.getContext("2d");
-  const W = canvas.width;
-  const H = canvas.height;
+  
+  // 依據 devicePixelRatio 動態調整高畫質與動態 aspect-ratio，避免橢圓扭曲
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.getBoundingClientRect();
+  const W = rect.width;
+  const H = rect.height;
 
-  // 我軍與敵軍 2D 單位節點
+  canvas.width = W * dpr;
+  canvas.height = H * dpr;
+  ctx.scale(dpr, dpr);
+
+  // 單位座標 (基於邏輯 W, H)
   let myUnits = [
-    { x: 100, y: H / 2, type: 'GENERAL', label: '主將', color: '#55c9a2', radius: 18 },
-    { x: 60, y: H / 2 - 50, type: 'CAVALRY', label: '騎兵', color: '#78a9ff', radius: 12 },
-    { x: 60, y: H / 2 + 50, type: 'DRUM', label: '鼓樓', color: '#f2c451', radius: 14 }
+    { x: W * 0.18, y: H * 0.5, label: '主將', color: '#55c9a2', radius: Math.min(W, H) * 0.08 },
+    { x: W * 0.08, y: H * 0.28, label: '鄉勇', color: '#78a9ff', radius: Math.min(W, H) * 0.05 },
+    { x: W * 0.08, y: H * 0.72, label: '鼓樓', color: '#f2c451', radius: Math.min(W, H) * 0.05 }
   ];
 
   let enemyUnits = [
-    { x: W - 100, y: H / 2, type: 'E_GEN', label: '敵將', color: '#e66a65', radius: 18 },
-    { x: W - 60, y: H / 2 - 50, type: 'E_SPEAR', label: '步兵', color: '#b388ff', radius: 12 },
-    { x: W - 60, y: H / 2 + 50, type: 'E_SPEAR', label: '弓手', color: '#b388ff', radius: 12 }
+    { x: W * 0.82, y: H * 0.5, label: '敵將', color: '#e66a65', radius: Math.min(W, H) * 0.08 },
+    { x: W * 0.92, y: H * 0.28, label: '步兵', color: '#b388ff', radius: Math.min(W, H) * 0.05 },
+    { x: W * 0.92, y: H * 0.72, label: '賊兵', color: '#b388ff', radius: Math.min(W, H) * 0.05 }
   ];
 
   let frame = 0;
-  let maxFrames = 120; // 戰鬥動畫持續 2 秒 (60fps)
+  let maxFrames = 100;
   let particles = [];
 
   function animate() {
     frame++;
     ctx.clearRect(0, 0, W, H);
 
-    // 1. 畫戰場網格背景 (類似 Image 3 陣圖)
+    // 1. 繪製背景陣列網格
     ctx.strokeStyle = '#23324d';
     ctx.lineWidth = 1;
-    for (let x = 0; x < W; x += 40) {
+    for (let x = 0; x < W; x += W / 16) {
       ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
     }
-    for (let y = 0; y < H; y += 40) {
+    for (let y = 0; y < H; y += H / 8) {
       ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
     }
 
-    // 中線陣地分界
-    ctx.strokeStyle = '#4a5d84';
-    ctx.setLineDash([6, 6]);
-    ctx.beginPath(); ctx.moveTo(W / 2, 0); ctx.lineTo(W / 2, H); ctx.stroke();
-    ctx.setLineDash([]);
+    // 2. 單位衝鋒（邏輯距離運動）
+    let progress = Math.min(1, frame / 50);
+    let myX = W * 0.18 + (W * 0.3) * progress;
+    let enemyX = W * 0.82 - (W * 0.3) * progress;
 
-    // 2. 移動單位 (衝鋒交鋒)
-    let progress = Math.min(1, frame / 60);
-    myUnits[0].x = 100 + (W / 2 - 140) * progress;
-    enemyUnits[0].x = (W - 100) - (W / 2 - 140) * progress;
+    myUnits[0].x = myX;
+    enemyUnits[0].x = enemyX;
 
-    if (frame > 40 && frame % 8 === 0) {
-      // 碰撞產生斬擊粒子特效
+    // 生成斬擊與傷害數值特效
+    if (frame > 35 && frame % 6 === 0) {
       particles.push({
-        x: W / 2 + (Math.random() * 40 - 20),
-        y: H / 2 + (Math.random() * 40 - 20),
-        text: isSuccess ? `-${Math.floor(Math.random() * 300 + 200)}` : `-${Math.floor(Math.random() * 100 + 50)}`,
+        x: W * 0.5 + (Math.random() * 30 - 15),
+        y: H * 0.5 + (Math.random() * 30 - 15),
+        text: isSuccess ? `-${Math.floor(Math.random() * 200 + 150)}` : `-${Math.floor(Math.random() * 80 + 40)}`,
         color: isSuccess ? '#f2c451' : '#e66a65',
-        life: 20
+        life: 18
       });
     }
 
-    // 3. 繪製單位圖示與環形光圈 (參考 Image 3 腳下光環)
+    // 3. 繪製正圓形單位 (arc 保證正圓形)
     [...myUnits, ...enemyUnits].forEach(u => {
-      // 腳下光圈
+      // 腳下光環
       ctx.beginPath();
-      ctx.arc(u.x, u.y + 12, u.radius + 4, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(0,0,0,0.3)';
-      ctx.fill();
+      ctx.arc(u.x, u.y, u.radius + 3, 0, Math.PI * 2);
       ctx.strokeStyle = u.color;
       ctx.lineWidth = 2;
       ctx.stroke();
 
-      // 單位主體
+      // 正圓本體
       ctx.beginPath();
       ctx.arc(u.x, u.y, u.radius, 0, Math.PI * 2);
       ctx.fillStyle = u.color;
       ctx.fill();
 
-      // 文字標籤
+      // 文字居中渲染（寬鬆字體）
       ctx.fillStyle = '#ffffff';
-      ctx.font = 'bold 11px sans-serif';
+      ctx.font = `bold ${Math.max(10, Math.floor(u.radius * 0.75))}px -apple-system, sans-serif`;
       ctx.textAlign = 'center';
-      ctx.fillText(u.label, u.x, u.y + 4);
+      ctx.textBaseline = 'middle';
+      ctx.fillText(u.label, u.x, u.y);
     });
 
-    // 4. 繪製刀光與傷害飄字特效
+    // 4. 繪製飄字特效
     for (let i = particles.length - 1; i >= 0; i--) {
       let p = particles[i];
       ctx.fillStyle = p.color;
-      ctx.font = 'bold 16px sans-serif';
-      ctx.fillText(p.text, p.x, p.y - (20 - p.life));
+      ctx.font = 'bold 15px sans-serif';
+      ctx.fillText(p.text, p.x, p.y - (18 - p.life));
       p.life--;
       if (p.life <= 0) particles.splice(i, 1);
     }
 
-    // 5. 繪製勝利 / 失敗橫幅動畫
-    if (frame >= maxFrames - 20) {
-      ctx.fillStyle = 'rgba(10, 16, 28, 0.75)';
-      ctx.fillRect(0, H / 2 - 30, W, 60);
-      ctx.font = 'bold 24px sans-serif';
+    // 5. 戰況結果條
+    if (frame >= maxFrames - 15) {
+      ctx.fillStyle = 'rgba(10, 16, 28, 0.85)';
+      ctx.fillRect(0, H * 0.35, W, H * 0.3);
+      ctx.font = 'bold 18px sans-serif';
       ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
       ctx.fillStyle = isSuccess ? '#55c9a2' : '#e66a65';
-      ctx.fillText(isSuccess ? '⚔️ 戰役大獲全勝 ⚔️' : '⚠️ 陣線退守 ⚠️', W / 2, H / 2 + 8);
+      ctx.fillText(isSuccess ? '⚔️ 陣前大獲全勝 ⚔️' : '⚠️ 陣線交鋒受阻 ⚠️', W / 2, H / 2);
     }
 
     if (frame < maxFrames) {
@@ -771,15 +788,15 @@ function run2DBattleAnimation(isSuccess, onComplete) {
 }
 
 /* -------------------------------------------------------------
-   恆常集訓系統（每年第 5 事件固定觸發）
+   恆常集訓系統
 ------------------------------------------------------------- */
 const constantCourses = [
-  { id: 1, title: "衝刺騎射", gain: "武力 +5", spec: "專項武力 ×1.5", stars: "★★★★☆☆", intensity: 4, fatigue: 12, stat: "武力", amount: 5 },
-  { id: 2, title: "戰術演練", gain: "統率 +4", spec: "專項統率 ×1.5", stars: "★★★☆☆☆", intensity: 3, fatigue: 6, trust: 4, stat: "統率", amount: 4 },
-  { id: 3, title: "傳播陣圖", gain: "智謀 +7", spec: "專項智謀 ×1.5", stars: "★★★★★☆", intensity: 5, fatigue: 12, stat: "智謀", amount: 7 },
-  { id: 4, title: "防守站位", gain: "政治 +4", spec: "專項政治 ×1.5", stars: "★★☆☆☆☆", intensity: 2, fatigue: 5, stat: "政治", amount: 4 },
-  { id: 5, title: "頭槌對抗", gain: "武力 +7", spec: "專項武力 ×1.5", stars: "★★★★★☆", intensity: 5, fatigue: 10, stat: "武力", amount: 7 },
-  { id: 6, title: "休養恢復", gain: "身心恢復", spec: "—", stars: "★☆☆☆☆☆", intensity: 1, fatigue: -25, stat: "REST", amount: 0 }
+  { id: 1, title: "基礎刀槍", gain: "武力 +4", stars: "★★★☆☆", fatigue: 10, stat: "武力", amount: 4 },
+  { id: 2, title: "陣形步法", gain: "統率 +4", stars: "★★★☆☆", fatigue: 6, stat: "統率", amount: 4 },
+  { id: 3, title: "兵法研讀", gain: "智謀 +5", stars: "★★★★☆", fatigue: 10, stat: "智謀", amount: 5 },
+  { id: 4, title: "農桑算術", gain: "政治 +4", stars: "★★☆☆☆", fatigue: 5, stat: "政治", amount: 4 },
+  { id: 5, title: "騎術練習", gain: "武力 +5", stars: "★★★★☆", fatigue: 10, stat: "武力", amount: 5 },
+  { id: 6, title: "休養生息", gain: "恢復身心", stars: "★☆☆☆☆", fatigue: -25, stat: "REST", amount: 0 }
 ];
 
 let selectedCourses = [];
@@ -808,7 +825,7 @@ function toggleCourse(id) {
     $(`tc-${id}`).classList.remove("selected");
   } else {
     if (selectedCourses.length >= 3) {
-      toast("恆常集訓最多只能選擇 3 堂課！");
+      toast("最多選擇 3 堂修練課！");
       return;
     }
     selectedCourses.push(id);
@@ -829,17 +846,19 @@ $("finishTrainBtn").onclick = () => {
     let c = constantCourses.find(item => item.id === id);
     if (c.stat === "REST") {
       s.fatigue = clamp(s.fatigue + c.fatigue);
-      logs.push("休養恢復");
+      logs.push("休養生息");
     } else {
-      s.attrs[c.stat] = clamp(s.attrs[c.stat] + c.amount);
+      let add = c.amount;
+      if (s.trait === "堅韌") add += 1;
+      s.attrs[c.stat] = clamp(s.attrs[c.stat] + add);
       s.fatigue = clamp(s.fatigue + c.fatigue);
-      logs.push(`${c.title}(${c.stat}+${c.amount})`);
+      logs.push(`${c.title}(${c.stat}+${add})`);
     }
   });
 
   s.log.push({
     year: s.year,
-    text: `[第5/10事件 恆常集訓] 完成修練：${logs.join("、")}`
+    text: `[第5/10事件 恆常集訓] 平民修練：${logs.join("、")}`
   });
 
   s.eventInYear++;
@@ -850,18 +869,18 @@ $("finishTrainBtn").onclick = () => {
 // 工具按鈕
 $("start").onclick = startGame;
 $("saveBtn").onclick = () => {
-  localStorage.setItem("threeKingdomsSave_v4", JSON.stringify(s));
-  toast("進度已儲存於本機瀏覽器！");
+  localStorage.setItem("threeKingdomsSave_v5", JSON.stringify(s));
+  toast("進度已儲存於瀏覽器！");
 };
 $("resetBtn").onclick = () => {
-  if (confirm("確定重置目前生涯？")) location.reload();
+  if (confirm("確定放棄目前生涯並重新開始？")) location.reload();
 };
 $("profileBtn").onclick = () => {
-  alert(`【${s.name}${s.courtesy ? "，字" : ""}${s.courtesy}】\n出身：${s.birthplace}\n陣營：${s.faction}\n剩餘戰役訓練點數：${s.extraTrainingPoints}\n\n生涯履歷：\n${s.log.map(x => x.year + "年: " + x.text).join("\n")}`);
+  alert(`【${s.name}${s.courtesy ? "，字" : ""}${s.courtesy}】\n身份：${s.faction === '在野百姓' ? '布衣平民' : '軍中將領'}\n陣營：${s.faction}\n志向：${s.ambition}\n剩餘戰役點數：${s.extraTrainingPoints}\n\n生涯履歷：\n${s.log.map(x => x.year + "年: " + x.text).join("\n")}`);
 };
 
 // 自動載入舊存檔
-const savedData = localStorage.getItem("threeKingdomsSave_v4");
+const savedData = localStorage.getItem("threeKingdomsSave_v5");
 if (savedData) {
   try {
     let saved = JSON.parse(savedData);
@@ -869,7 +888,7 @@ if (savedData) {
     b.className = "secondary";
     b.style.width = "100%";
     b.style.marginTop = "10px";
-    b.textContent = "📂 繼續上次的三國生涯";
+    b.textContent = "📂 繼續上次的百姓生涯";
     $("create").appendChild(b);
     b.onclick = () => {
       s = saved;
