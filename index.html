@@ -61,7 +61,7 @@ label { display: block; color: #aab6d0; font-weight: 700; margin: 14px 0 6px; fo
 .primary:disabled { background: #4a422f; color: #888; box-shadow: none; cursor: not-allowed; }
 .secondary { background: #202d47; border: 1px solid var(--line); border-radius: 10px; padding: 9px 12px; color: #dce4f5; font-weight: 700; font-size: 13px; }
 
-/* Status Bar & Header */
+/* Header & Status Bar */
 .hero { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; }
 .hero h2 { font-size: 24px; color: white; margin: 0 0 4px; letter-spacing: 1px; }
 .crest { width: 66px; height: 66px; border-radius: 16px; background: linear-gradient(145deg,#5c2739,#a94c42); display: grid; place-items: center; font-size: 32px; border: 2px solid #d5a84a; }
@@ -87,14 +87,14 @@ label { display: block; color: #aab6d0; font-weight: 700; margin: 14px 0 6px; fo
 .attr-item button { margin-top: 4px; background: #263653; border: 1px solid var(--gold); color: var(--gold); border-radius: 6px; width: 100%; font-weight: bold; font-size: 11px; padding: 4px 0; }
 .attr-item button:disabled { border-color: #444; color: #666; background: #1a2230; cursor: not-allowed; }
 
-/* Dynamic Event UI */
+/* Event Box UI */
 .event-box { background: #121c2e; border: 1px solid var(--line); border-radius: 14px; padding: 16px; margin-bottom: 12px; }
 .event-chapter { color: var(--purple); font-size: 13px; font-weight: bold; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between; }
 .event-desc { font-size: 14.5px; line-height: 1.8; color: #dce4f5; text-align: justify; }
 
 .eventchoices { display: grid; gap: 10px; margin-top: 14px; }
 
-/* Multi-risk Choice Buttons */
+/* Dynamic Choice Buttons & Risk Badges */
 .choice-btn {
   background: #152238;
   border: 1.5px solid #2d3e61;
@@ -106,11 +106,9 @@ label { display: block; color: #aab6d0; font-weight: 700; margin: 14px 0 6px; fo
   text-align: left;
   transition: all 0.2s ease;
   cursor: pointer;
-  position: relative;
 }
 .choice-btn:hover { border-color: var(--gold); background: #1d2d4a; }
 
-/* Risk Tag Styling */
 .risk-tag { font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: bold; margin-bottom: 4px; display: inline-block; }
 .risk-high { background: rgba(230, 106, 101, 0.2); color: var(--red); border: 1px solid var(--red); }
 .risk-med { background: rgba(242, 196, 81, 0.2); color: var(--gold); border: 1px solid var(--gold); }
@@ -179,7 +177,7 @@ canvas#battleCanvas {
 .outcome-text { font-size: 14.5px; line-height: 1.8; color: #edf1fb; margin-bottom: 12px; text-align: justify; }
 .outcome-changes { background: #0b1220; border-radius: 8px; padding: 10px 14px; font-size: 12.5px; color: var(--gold); margin-bottom: 14px; }
 
-/* Training System UI */
+/* Training UI */
 .training-banner { background: #162238; border-left: 4px solid var(--gold); padding: 12px 14px; border-radius: 8px; margin-bottom: 12px; }
 .training-banner h3 { margin: 0 0 4px; font-size: 15px; color: var(--gold); }
 .training-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
@@ -208,14 +206,14 @@ footer { text-align: center; color: #73819d; font-size: 11px; margin: 20px 0; }
 <div class="wrap">
 <div class="topline"></div>
 <header class="brand">
-  <div><h1>亂世英傑</h1><small>THREE KINGDOMS · STRATEGY SIMULATOR</small></div>
-  <span class="pill">📜 三國演義·技能與機制升級版</span>
+  <div><h1>亂世英傑</h1><small>THREE KINGDOMS · SIMULATOR</small></div>
+  <span class="pill">📜 彈性多選項 · 每歲首修修練版</span>
 </header>
 
 <!-- 1. 角色建立介面 -->
 <section class="panel" id="create">
   <h2>創立你的三國角色</h2>
-  <label><span class="sectionno">01</span>百姓姓名（彩蛋觸發提示：輸入趙雲、關羽、呂布等試試）</label>
+  <label><span class="sectionno">01</span>百姓姓名（輸入趙雲、關羽、呂布可開啟隱藏彩蛋）</label>
   <input class="field" id="name" maxlength="12" placeholder="例如：張三、阿雲、趙雲" value="阿雲">
   <label>字/別名（選填）</label>
   <input class="field" id="courtesy" maxlength="12" placeholder="例如：子龍">
@@ -261,20 +259,20 @@ footer { text-align: center; color: #73819d; font-size: 11px; margin: 20px 0; }
       </div>
       <div class="crest" id="crest">🌾</div>
     </div>
-    <div class="bigline" id="seasonline">公元 189 年 ｜ 當前第 1 / 10 事件</div>
+    <div class="bigline" id="seasonline">公元 189 年 ｜ 當前第 1 / 10 事件（歲初修練時段）</div>
     <div class="stats" id="quickstats"></div>
 
-    <!-- 限定加點時機：只在第 1 個事件開放 -->
+    <!-- 限定加點時機：一年中僅在第 1 個事件開放加點 -->
     <div style="margin-top:10px; font-size:12px; font-weight:bold; color:var(--gold);" id="allocNotice">
       🎯 戰役獲取的自由點數：<span id="trainPointsText" style="font-size:15px;">0</span> 點
-      <span style="font-size:11px; font-weight:normal; color:var(--muted); display:block; margin-top:2px;" id="allocStatusTag">
-        (⚠️ 屬性分配僅限每年的第 1 個事件「歲初整頓」開啟)
+      <span style="font-size:11px; font-weight:normal; display:block; margin-top:2px;" id="allocStatusTag">
+        (🟢 每年第 1 個事件開放自由點數分配與歲初演武)
       </span>
     </div>
     <div class="attr-allocator">
       <div class="attr-item"><b>武力 <span id="v-武力">15</span></b><button id="btn-武力" onclick="spendPoint('武力')">+1</button></div>
       <div class="attr-item"><b>統率 <span id="v-統率">15</span></b><button id="btn-統率" onclick="spendPoint('統率')">+1</button></div>
-      <div class="attr-item"><b>智謀 <span id="v-智謀">15</span></b><button id="btn-智谋" onclick="spendPoint('智謀')">+1</button></div>
+      <div class="attr-item"><b>智謀 <span id="v-智謀">15</span></b><button id="btn-智謀" onclick="spendPoint('智謀')">+1</button></div>
       <div class="attr-item"><b>政治 <span id="v-政治">12</span></b><button id="btn-政治" onclick="spendPoint('政治')">+1</button></div>
       <div class="attr-item"><b>魅力 <span id="v-魅力">15</span></b><button id="btn-魅力" onclick="spendPoint('魅力')">+1</button></div>
     </div>
@@ -286,25 +284,24 @@ footer { text-align: center; color: #73819d; font-size: 11px; margin: 20px 0; }
     </div>
   </div>
 
-  <!-- 3. 劇情事件面板 -->
+  <!-- 3. 劇情與演武面板 -->
   <div class="panel" id="eventPanel">
     <h2>亂世際遇與行動選擇</h2>
     
     <div class="event-box">
       <div class="event-chapter">
         <span id="eventEra">◆ 公元 189 年</span>
-        <span id="eventStepTag" style="color:var(--gold)">第 1 / 10 事件</span>
+        <span id="eventStepTag" style="color:var(--gold)">第 1 / 10 事件（歲初修練）</span>
       </div>
-      <div class="event-desc" id="eventIntro">故事背景載入中...</div>
+      <div class="event-desc" id="eventIntro">背景加載中...</div>
     </div>
 
     <div class="event-box" style="background:#0f1829;">
       <div class="event-desc" id="eventText">...</div>
     </div>
 
-    <div class="meta" style="margin-top:10px;" id="choicePrompt">請選擇行動方案（多重風險程度可選）：</div>
+    <div class="meta" style="margin-top:10px;" id="choicePrompt">請選擇行動對策：</div>
     
-    <!-- 事件選項列表 (高風險/中風險/穩健低風險/招牌技能專屬選項) -->
     <div class="eventchoices" id="choices"></div>
 
     <!-- 2D Canvas 動態戰場區 -->
@@ -326,19 +323,19 @@ footer { text-align: center; color: #73819d; font-size: 11px; margin: 20px 0; }
     </div>
   </div>
 
-  <!-- 4. 恆常演武集訓營 -->
+  <!-- 4. 每年第 1 事件的「歲初演武修練營」 UI -->
   <div class="panel hidden" id="trainingPanel">
-    <h2>年度恆常演武集訓 <span class="meta" style="font-size:12px;" id="trainCounter">請選擇 3 堂課</span></h2>
+    <h2>歲初演武特訓營（每歲首修練） <span class="meta" style="font-size:12px;" id="trainCounter">請選擇 3 堂課</span></h2>
     <div class="training-banner">
-      <h3>🔶 恆常演武集訓營（第 5 / 10 事件）</h3>
-      <p>平民可透過演武修練提升屬性，解鎖招牌技能！</p>
+      <h3>🔶 歲初特訓營（第 1 / 10 事件專屬）</h3>
+      <p>歲初乃練兵修身之黃金時期！選擇 3 堂特訓課以獲得大幅度能力提升！</p>
     </div>
 
     <div class="training-grid" id="trainingGrid"></div>
-    <button class="primary" id="finishTrainBtn" disabled>完成集訓並繼續人生</button>
+    <button class="primary" id="finishTrainBtn" disabled>完成歲初修練並進入年度事件</button>
   </div>
 
-  <!-- 生涯履歷紀錄 -->
+  <!-- 生涯歷史紀錄 -->
   <div class="panel">
     <h2>生涯歷史紀錄</h2>
     <div id="timeline"><div class="log">亂世百姓傳奇即將展開……</div></div>
@@ -356,7 +353,7 @@ const pick = { birthplace: "幽州", ambition: "習武", trait: "忠厚" };
 
 const factionIcons = { "在野百姓": "🌾", "蜀漢": "🐉", "曹魏": "🦅", "東吳": "🌊", "獨立群雄": "🔥" };
 
-// 招牌技能定義與門檻
+// 招牌技能門檻 ( >= 35 解鎖 )
 const skillDefinitions = [
   { key: "萬夫不當", stat: "武力", req: 35, icon: "⚔️", desc: "單挑與破陣能力大幅提升" },
   { key: "陣型嚴整", stat: "統率", req: 35, icon: "🛡️", desc: "指揮陣型減低傷亡" },
@@ -366,20 +363,18 @@ const skillDefinitions = [
 ];
 
 /* -------------------------------------------------------------
-   修改 1：開局隨機數值生成 & 隱藏彩蛋檢測
+   開局隨機數值 & 隱藏彩蛋
 ------------------------------------------------------------- */
 function generateRandomStats(name, ambition) {
   let isEasterEgg = false;
   let eggReason = "";
 
-  // 特定彩蛋姓名檢測
   const eggNames = ["趙雲", "關羽", "張飛", "呂布", "項羽", "神將", "無雙", "霸王", "諸葛亮"];
   if (eggNames.some(n => name.includes(n)) || Math.random() < 0.08) {
     isEasterEgg = true;
     eggReason = eggNames.some(n => name.includes(n)) ? `【天命將星 · ${name}】` : "【亂世奇才】";
   }
 
-  // 隨機起伏底數 (10 ~ 18)
   let base = {
     武力: Math.floor(Math.random() * 8) + 10,
     統率: Math.floor(Math.random() * 8) + 10,
@@ -388,13 +383,11 @@ function generateRandomStats(name, ambition) {
     魅力: Math.floor(Math.random() * 8) + 10
   };
 
-  // 志向額外加成
   if (ambition === "習武") base.武力 += 8;
   if (ambition === "兵法") base.統率 += 8;
   if (ambition === "謀略") base.智謀 += 8;
   if (ambition === "農桑") base.政治 += 8;
 
-  // 觸發彩蛋大幅加成
   if (isEasterEgg) {
     base.武力 += 25;
     base.統率 += 25;
@@ -407,10 +400,11 @@ function generateRandomStats(name, ambition) {
 }
 
 /* -------------------------------------------------------------
-   多重風險劇情庫（高/中/低風險 + 招牌技能選項）
+   劇情樹：歷史劇情 + 彈性動態多選項 (不硬性卡在 3 個選項)
 ------------------------------------------------------------- */
 const narrativeTree = {
-  "e189_1": {
+  // === 189 年 ===
+  "e189_2": {
     isBattle: true,
     year: 189, era: "中平六年 · 初起於布衣",
     title: "黑山賊寇襲村與鄉勇抗爭",
@@ -422,37 +416,36 @@ const narrativeTree = {
         title: "手持柴刀單騎單挑敵賊首",
         sub: "勝則大振士氣，敗則身受重傷（高回報/低成功率）",
         stat: "武力", baseRate: -15,
-        win: { text: "你暴喝一聲，飛身砍斷馬腿陣斬賊首！賊軍作鳥獸散！功名大振！", effect: { 武力: 5, 聲望: 12, 疲勞: 12 }, points: 5, nextId: "e189_2" },
-        fail: { text: "你衝鋒受阻，肩胛受創重傷，同鄉拼死將你搶回。", effect: { 武力: 1, 疲勞: 25 }, points: 2, nextId: "e189_2" }
+        win: { text: "你暴喝一聲飛身砍斷馬腿陣斬賊首！賊軍作鳥獸散！功名大振！", effect: { 武力: 5, 聲望: 12, 疲勞: 12 }, points: 5, nextId: "e189_3" },
+        fail: { text: "你衝鋒受阻，肩胛受創重傷，同鄉拼死將你搶回。", effect: { 武力: 1, 疲勞: 25 }, points: 2, nextId: "e189_3" }
       },
       {
         risk: "med", riskText: "🟡 中風險平衡",
         title: "率鄉勇利用村口鹿角設防",
         sub: "利用地利阻擊敵軍（平衡對策）",
         stat: "統率", baseRate: 10,
-        win: { text: "鹿角與滾木成功的阻擋了賊騎，敵軍見防線固若金湯隨即退去！", effect: { 統率: 4, 信任: 6, 聲望: 5 }, points: 3, nextId: "e189_2" },
-        fail: { text: "陣腳混亂，混戰中付出了代價才化解危機。", effect: { 統率: 1, 疲勞: 15 }, points: 1, nextId: "e189_2" }
+        win: { text: "鹿角與滾木成功阻擋賊騎，敵軍見防線固若金湯隨即退去！", effect: { 統率: 4, 信任: 6, 聲望: 5 }, points: 3, nextId: "e189_3" },
+        fail: { text: "陣腳混亂，混戰中付出了代價才化解危機。", effect: { 統率: 1, 疲勞: 15 }, points: 1, nextId: "e189_3" }
       },
       {
         risk: "low", riskText: "🟢 穩健低風險",
         title: "掩護百姓向後山安全撤退",
         sub: "避其鋒芒，保全人丁（高成功率/少許獎勵）",
-        stat: "魅力", baseRate: 45, // 極高保底成功率
-        win: { text: "你冷靜指揮老人小孩有序撤入山林避難，無一人傷亡！村民深感恩德！", effect: { 魅力: 3, 信任: 8, 疲勞: 5 }, points: 1, nextId: "e189_2" },
-        fail: { text: "撤退途中散落部分財物，但鄉親性命安然無恙。", effect: { 魅力: 1, 疲勞: 8 }, points: 1, nextId: "e189_2" }
+        stat: "魅力", baseRate: 45,
+        win: { text: "你冷靜指揮老人小孩有序撤入山林避難，無一人傷亡！村民深感恩德！", effect: { 魅力: 3, 信任: 8, 疲勞: 5 }, points: 1, nextId: "e189_3" },
+        fail: { text: "撤退途中散落部分財物，但鄉親性命安然無恙。", effect: { 魅力: 1, 疲勞: 8 }, points: 1, nextId: "e189_3" }
       },
-      // 招牌技能專屬選項
       {
         risk: "skill", reqSkill: "萬夫不當", riskText: "✨ 招牌技能【萬夫不當】",
         title: "施展絕學·萬夫莫敵破陣殺賊",
-        sub: "憑絕世武藝無傷破敵（招牌技能專屬極高成功率）",
+        sub: "憑絕世武藝無傷破敵（招牌技能極高成功率）",
         stat: "武力", baseRate: 50,
-        win: { text: "【技能爆發】你刀光如龍，一人獨擋狹道破敵數十人！敵軍驚恐潰逃！", effect: { 武力: 6, 聲望: 15, 疲勞: 5 }, points: 6, nextId: "e189_2" },
-        fail: { text: "雖順利擊退敵軍，但稍微消耗了些體力。", effect: { 武力: 2, 疲勞: 10 }, points: 2, nextId: "e189_2" }
+        win: { text: "【技能爆發】你刀光如龍，一人獨擋狹道破敵數十人！敵軍驚恐潰逃！", effect: { 武力: 6, 聲望: 15, 疲勞: 5 }, points: 6, nextId: "e189_3" },
+        fail: { text: "雖順利擊退敵軍，但稍微消耗了些體力。", effect: { 武力: 2, 疲勞: 10 }, points: 2, nextId: "e189_3" }
       }
     ]
   },
-  "e189_2": {
+  "e189_3": {
     isBattle: false,
     year: 189, era: "中平六年 · 朝野崩壞",
     title: "官府徵兵令與鄉勇去留",
@@ -485,39 +478,51 @@ const narrativeTree = {
       }
     ]
   },
+
+  // === 190 年 (諸侯會盟擇主事件：多達 4 個基礎選項，彈性擴充) ===
   "e190_alliance": {
     isBattle: false,
     year: 190, era: "初平元年 · 十八路諸侯會盟",
     title: "酸棗會盟·叩門擇主",
     intro: "◆ 第二章：風雲際會 · 擇主關頭",
-    text: "初平元年，十八路诸侯會盟酸棗討伐董卓！你帶著手下鄉勇來到諸侯大營。劉備、曹操、孫堅各據一方招攬豪傑。",
+    text: "初平元年，十八路諸侯會盟酸棗討伐董卓！你帶著手下鄉勇來到諸侯大營。中原戰雲密佈，劉備、曹操、孫堅各據一方招攬豪傑，這是你決定未來陣營的最關鍵時刻！",
     choices: [
       {
-        risk: "high", riskText: "🔴 冒險投奔（劉備）",
+        risk: "high", riskText: "🔴 投奔劉備（蜀漢）",
         title: "求見劉備，以仁義理想自薦",
-        sub: "勝則入蜀漢為先鋒，敗則維持在野（高風險）",
+        sub: "勝則入蜀漢為先鋒，敗則維持在野（魅力檢定）",
         stat: "魅力", baseRate: -5,
         win: { setFaction: "蜀漢", text: "【擇主成功！】劉備親自出營相迎！拜你為蜀漢【軍前先鋒】！", effect: { 信任: 25, 魅力: 6, 聲望: 12 }, nextId: "e192_shu" },
         fail: { text: "【擇主失敗】門客以你寸功未立為由婉拒。你維持【在野布衣】身份。", effect: { 魅力: 1, 聲望: 2 }, nextId: "e192_wild" }
       },
       {
-        risk: "high", riskText: "🔴 冒險投奔（曹操）",
+        risk: "high", riskText: "🔴 投奔曹操（曹魏）",
         title: "求見曹操，獻上討董與屯田策",
-        sub: "勝則入曹魏為軍官，敗則維持在野",
+        sub: "勝則入曹魏為軍官，敗則維持在野（政治檢定）",
         stat: "政治", baseRate: -5,
         win: { setFaction: "曹魏", text: "【擇主成功！】曹操大讚你為實務之才，任命你為【軍糧別駕】！", effect: { 信任: 22, 政治: 6, 聲望: 12 }, nextId: "e192_wei" },
         fail: { text: "【擇主失敗】曹軍主簿以文墨資歷不足婉拒。你維持【在野布衣】身份。", effect: { 政治: 1, 聲望: 2 }, nextId: "e192_wild" }
       },
       {
-        risk: "low", riskText: "🟢 穩健自立防守",
-        title: "暫不投靠諸侯，回鄉築寨保境",
-        sub: "穩健累積實力，不承擔擇主失敗風險（高成功率）",
+        risk: "high", riskText: "🔴 投奔孫堅（東吳）",
+        title: "求見孫堅，展現勇力與江東志向",
+        sub: "勝則入東吳為水師校尉，敗則維持在野（統率檢定）",
+        stat: "統率", baseRate: -5,
+        win: { setFaction: "東吳", text: "【擇主成功！】孫堅見你剛勇過人，哈哈大笑將你招入麾下！任命為【江東水師校尉】！", effect: { 信任: 22, 統率: 6, 聲望: 12 }, nextId: "e192_wu" },
+        fail: { text: "【擇主失敗】孫堅軍務繁忙，副將婉言勸你先積戰功。你維持【在野布衣】身份。", effect: { 統率: 1, 聲望: 2 }, nextId: "e192_wild" }
+      },
+      {
+        risk: "low", riskText: "🟢 穩健自立",
+        title: "暫不投靠諸侯，回鄉築寨保境安民",
+        sub: "不承擔擇主失敗風險，穩健積蓄實力（高成功率）",
         stat: "統率", baseRate: 40,
         win: { text: "你看清諸侯各懷鬼胎，決定帶領部下回鄉築寨。聲望與實力穩步上升！", effect: { 統率: 4, 聲望: 8 }, nextId: "e192_wild" },
         fail: { text: "回鄉途中遭遇零星匪寇，化險為夷。", effect: { 統率: 1 }, nextId: "e192_wild" }
       }
     ]
   },
+
+  // === 192 年 分支路線 ===
   "e192_wild": {
     isBattle: true,
     year: 192, era: "初平三年 · 在野保境篇",
@@ -593,6 +598,33 @@ const narrativeTree = {
       }
     ]
   },
+  "e192_wu": {
+    isBattle: true,
+    year: 192, era: "初平三年 · 東吳征戰篇",
+    title: "長江水師突破與江防開路",
+    intro: "◆ 第三章：江東猛虎 · 東吳立功",
+    text: "初平三年，孫堅軍隊與劉表部將水戰。你作為東吳水師校尉，奉命率衝鋒戰船破開江防阻礙！",
+    choices: [
+      {
+        risk: "high", riskText: "🔴 高風險突破",
+        title: "率火輪衝鋒戰船直撞敵軍水寨",
+        sub: "強攻水寨（高風險/高戰役點數）",
+        stat: "統率", baseRate: -5,
+        win: { text: "戰船破浪衝破敵軍江防！你身先士卒斬殺敵水師副將！", effect: { 統率: 5, 聲望: 14, 信任: 10 }, points: 5, nextId: "e200_hero" },
+        fail: { text: "敵水寨弩箭強勁，水戰演變成慘烈拉鋸。", effect: { 統率: 2, 疲勞: 20 }, points: 2, nextId: "e200_hero" }
+      },
+      {
+        risk: "low", riskText: "🟢 穩健封鎖",
+        title: "於江面封鎖敵軍糧道戰船",
+        sub: "穩健水上切斷後勤（高成功率）",
+        stat: "智謀", baseRate: 40,
+        win: { text: "成功截獲敵軍糧船三艘！敵水軍戰意全無潰散！", effect: { 智謀: 3, 信任: 8 }, points: 3, nextId: "e200_hero" },
+        fail: { text: "截糧任務順利完成。", effect: { 智謀: 1 }, points: 1, nextId: "e200_hero" }
+      }
+    ]
+  },
+
+  // === 200 年 ===
   "e200_hero": {
     isBattle: true,
     year: 200, era: "建安五年 · 官渡大決戰",
@@ -618,6 +650,8 @@ const narrativeTree = {
       }
     ]
   },
+
+  // === 208 年 ===
   "e208_chibi": {
     isBattle: true,
     year: 208, era: "建安十三年 · 赤壁烽火",
@@ -645,8 +679,58 @@ const narrativeTree = {
   }
 };
 
+/* -------------------------------------------------------------
+   通用的隨機事件生成器（用於填充每年第 2~10 個事件）
+------------------------------------------------------------- */
+function generateGenericEvent(year, stepInYear) {
+  const genericTitles = [
+    { title: "邊境商隊被劫事件", text: "一隊西域商隊在邊境遭遇馬賊圍困，發出求救訊號。" },
+    { title: "軍營夜間演武對決", text: "軍中舉行年度擂台比武，勝者可獲得豐富賞賜與軍職提升。" },
+    { title: "地方水患與修築堤防", text: "暴雨連綿，大河洪水氾濫，需要即時調配人力築堤防洪。" },
+    { title: "流民入境與治安巡視", text: "大批流民湧入城外，治安面臨嚴峻挑戰。" },
+    { title: "豪強地主隱匿戶口", text: "地方豪強拒絕交納賦稅，朝廷派員前來清查土地與戶口。" }
+  ];
+
+  let pickEv = genericTitles[(year + stepInYear) % genericTitles.length];
+
+  return {
+    isBattle: stepInYear % 3 === 0,
+    year: year,
+    era: `公元 ${year} 年 · 亂世歷練`,
+    title: pickEv.title,
+    intro: `◆ 第 ${stepInYear} / 10 事件 · 遭遇事件`,
+    text: pickEv.text,
+    choices: [
+      {
+        risk: "high", riskText: "🔴 高風險博弈",
+        title: "親自出面以強硬手段解決",
+        sub: "高風險高回報對策",
+        stat: "武力", baseRate: -10,
+        win: { text: "手段果斷乾脆！順利解決了危機，名望大幅提升！", effect: { 武力: 3, 聲望: 6 }, points: 3 },
+        fail: { text: "遭遇強烈反彈，費盡九牛二虎之力才平息。", effect: { 武力: 1, 疲勞: 15 }, points: 1 }
+      },
+      {
+        risk: "med", riskText: "🟡 中風險對策",
+        title: "依循法度與規矩穩妥辦理",
+        sub: "標準處理流程",
+        stat: "統率", baseRate: 15,
+        win: { text: "處理得當，獲得上下官吏與百姓的一致讚許。", effect: { 統率: 3, 信任: 5 } },
+        fail: { text: "進展略顯遲緩，但無大礙。", effect: { 統率: 1 } }
+      },
+      {
+        risk: "low", riskText: "🟢 穩健低風險",
+        title: "委派得力部下協助並加派巡邏",
+        sub: "穩健保底對策（高成功率）",
+        stat: "政治", baseRate: 45,
+        win: { text: "順利化解風險，並未造成任何傷亡或損失。", effect: { 政治: 2, 疲勞: 3 } },
+        fail: { text: "順利處理完畢。", effect: { 政治: 1 } }
+      }
+    ]
+  };
+}
+
 let s = null;
-let currentEventKey = "e189_1";
+let currentEventKey = "e189_2";
 
 function toast(t) {
   $("toast").textContent = t;
@@ -669,7 +753,6 @@ bindGroup("birthplaces", "birthplace");
 bindGroup("ambitions", "ambition");
 bindGroup("traits", "trait");
 
-// 解鎖招牌技能檢測
 function updateSignatureSkills() {
   if (!s) return;
   s.skills = [];
@@ -679,18 +762,17 @@ function updateSignatureSkills() {
     }
   });
 
-  // 更新 UI 技能標籤
   $("skillsBar").innerHTML = s.skills.map(sk => `
     <span class="skill-badge">${sk.icon} ${sk.key}</span>
   `).join("");
 }
 
 /* -------------------------------------------------------------
-   修改 2：點數分配限定在第 1 事件（歲初整頓）
+   點數分配限制：僅在每年第 1 個事件開放
 ------------------------------------------------------------- */
 function spendPoint(attr) {
   if (s.eventInYear !== 1) {
-    toast("⚠️ 屬性分配僅限在每年的第 1 個事件（歲初修練）進行！");
+    toast("⚠️ 屬性分配僅限在每年的第 1 個事件（歲初整頓）開放！");
     return;
   }
   if (s.extraTrainingPoints > 0 && s.attrs[attr] < 100) {
@@ -706,15 +788,13 @@ function spendPoint(attr) {
 
 function startGame() {
   const name = $("name").value.trim() || "阿雲";
-  
-  // 修改 1：生成起伏基礎數值與彩蛋
   const { base, isEasterEgg, eggReason } = generateRandomStats(name, pick.ambition);
 
   s = {
     name, courtesy: $("courtesy").value.trim(),
     birthplace: pick.birthplace, faction: "在野百姓", ambition: pick.ambition, trait: pick.trait,
     age: 18, year: 189,
-    eventInYear: 1,
+    eventInYear: 1, // 每年 1~10 事件
     totalEvents: 0,
     attrs: base, trust: 20, fame: 5, fatigue: 10,
     extraTrainingPoints: isEasterEgg ? 5 : 0,
@@ -723,10 +803,10 @@ function startGame() {
   };
 
   if (isEasterEgg) {
-    toast(`✨ 觸發隱藏彩蛋：${eggReason}！獲得神將基礎數值加成！`);
+    toast(`✨ 觸發隱藏彩蛋：${eggReason}！獲得神將初始屬性加成！`);
   }
 
-  currentEventKey = "e189_1";
+  currentEventKey = "e189_2";
 
   $("create").classList.add("hidden");
   $("game").classList.remove("hidden");
@@ -739,15 +819,15 @@ function startGame() {
 function renderState() {
   $("heroName").textContent = s.name;
   $("factionline").textContent = `${s.faction} · ${s.birthplace}出身 · 志在${s.ambition}`;
-  $("herotitle").textContent = (s.courtesy ? `字 ${s.courtesy} · ` : "") + `${s.age} 歲 | 身份：${s.faction === '在野百姓' ? '布衣平民' : s.faction + '軍官'}`;
+  $("herotitle").textContent = (s.courtesy ? `字 ${s.courtesy} · ` : "") + `${s.age} 歲 | 身分：${s.faction === '在野百姓' ? '布衣平民' : s.faction + '軍官'}`;
   $("crest").textContent = factionIcons[s.faction] || "🌾";
   $("seasonline").textContent = `公元 ${s.year} 年 ｜ 當前第 ${s.eventInYear} / 10 事件`;
   $("trainPointsText").textContent = s.extraTrainingPoints;
 
-  // 控制點數分配按鈕開關 (修改 2)
+  // 限定加點時機 UI 開關
   const isAllowAlloc = (s.eventInYear === 1);
   $("allocStatusTag").textContent = isAllowAlloc 
-    ? "🟢 當前為歲初第 1 事件，可自由分配屬性點數！" 
+    ? "🟢 當前為每年第 1 事件（歲初整頓），開放自由點數分配與特訓！" 
     : "⚠️ 屬性分配僅限每年的第 1 個事件「歲初整頓」開放";
   $("allocStatusTag").style.color = isAllowAlloc ? "var(--green)" : "var(--muted)";
 
@@ -785,10 +865,12 @@ function getSuccessRate(choice) {
   return clamp(rate, 15, 98);
 }
 
+// 顯示當前事件 (第 1 個事件為「歲初演武修練營」)
 function showCurrentEvent() {
   if (s.ended) return;
 
-  if (s.eventInYear === 5) {
+  // 1 年 10 個事件，第 1 個事件固定為歲初演武修練！
+  if (s.eventInYear === 1) {
     startConstantTraining();
     return;
   }
@@ -800,9 +882,8 @@ function showCurrentEvent() {
   $("choices").classList.remove("hidden");
 
   let ev = narrativeTree[currentEventKey];
-  if (!ev || currentEventKey === "end") {
-    endGame();
-    return;
+  if (!ev) {
+    ev = generateGenericEvent(s.year, s.eventInYear);
   }
 
   s.year = ev.year || s.year;
@@ -811,7 +892,7 @@ function showCurrentEvent() {
   $("eventIntro").textContent = ev.title + (ev.isBattle ? " 【戰役】" : "");
   $("eventText").textContent = ev.text;
 
-  // 修改 3 & 4：渲染多重風險選項與招牌技能選項
+  // 動態渲染所有可選擇項（包含招牌技能與多方向選項）
   let availableChoices = ev.choices.filter(c => {
     if (c.reqSkill) {
       return s.skills.some(sk => sk.key === c.reqSkill);
@@ -835,7 +916,7 @@ function showCurrentEvent() {
 }
 
 function makeChoice(choiceIdx) {
-  const ev = narrativeTree[currentEventKey];
+  let ev = narrativeTree[currentEventKey] || generateGenericEvent(s.year, s.eventInYear);
   let availableChoices = ev.choices.filter(c => !c.reqSkill || s.skills.some(sk => sk.key === c.reqSkill));
   const choice = availableChoices[choiceIdx];
 
@@ -893,7 +974,7 @@ function finishChoiceProcess(ev, choice, isSuccess, resultObj) {
     text: `[第${s.eventInYear}/10事件] ${ev.title} - ${choice.title}（${isSuccess ? '成功' : '挫折'}）：${resultObj.text}`
   });
 
-  s.nextEventId = resultObj.nextId || "e208_chibi";
+  s.nextEventId = resultObj.nextId || null;
 
   updateSignatureSkills();
   renderState();
@@ -906,15 +987,18 @@ function finishChoiceProcess(ev, choice, isSuccess, resultObj) {
 }
 
 $("nextStepBtn").onclick = () => {
-  currentEventKey = s.nextEventId || "e208_chibi";
+  if (s.nextEventId) {
+    currentEventKey = s.nextEventId;
+  }
   s.totalEvents++;
   s.eventInYear++;
 
+  // 滿 10 個事件推進至下一年，重新進入第 1 個事件（歲初修練）
   if (s.eventInYear > 10) {
     s.eventInYear = 1;
     s.year++;
     s.age++;
-    toast(`🎉 歲月流逝，年齡成長至 ${s.age} 歲！`);
+    toast(`🎉 歲月流逝，年齡成長至 ${s.age} 歲！迎來新一年的歲初修練！`);
   }
 
   renderState();
@@ -922,7 +1006,7 @@ $("nextStepBtn").onclick = () => {
 };
 
 /* -------------------------------------------------------------
-   2D Canvas 動態戰場引擎
+   2D Canvas 動態戰場渲染引擎
 ------------------------------------------------------------- */
 function run2DBattleAnimation(isSuccess, onComplete) {
   const canvas = $("battleCanvas");
@@ -1029,7 +1113,7 @@ function run2DBattleAnimation(isSuccess, onComplete) {
 }
 
 /* -------------------------------------------------------------
-   恆常集訓系統
+   每年第 1 個事件：歲初演武修練營
 ------------------------------------------------------------- */
 const constantCourses = [
   { id: 1, title: "基礎刀槍", gain: "武力 +4", stars: "★★★☆☆", fatigue: 10, stat: "武力", amount: 4 },
@@ -1099,10 +1183,10 @@ $("finishTrainBtn").onclick = () => {
 
   s.log.push({
     year: s.year,
-    text: `[第5/10事件 恆常集訓] 平民修練：${logs.join("、")}`
+    text: `[第1/10事件 歲初整頓特訓] 完成修練：${logs.join("、")}`
   });
 
-  s.eventInYear++;
+  s.eventInYear++; // 進入第 2 個事件
   updateSignatureSkills();
   renderState();
   showCurrentEvent();
@@ -1129,7 +1213,7 @@ function endGame() {
 // 工具按鈕
 $("start").onclick = startGame;
 $("saveBtn").onclick = () => {
-  localStorage.setItem("threeKingdomsSave_v7", JSON.stringify(s));
+  localStorage.setItem("threeKingdomsSave_v9", JSON.stringify(s));
   toast("進度已儲存於瀏覽器！");
 };
 $("resetBtn").onclick = () => {
@@ -1140,7 +1224,7 @@ $("profileBtn").onclick = () => {
 };
 
 // 自動載入舊存檔
-const savedData = localStorage.getItem("threeKingdomsSave_v7");
+const savedData = localStorage.getItem("threeKingdomsSave_v9");
 if (savedData) {
   try {
     let saved = JSON.parse(savedData);
